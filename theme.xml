@@ -41,25 +41,16 @@
 			background-color: #464646;
 			box-shadow: 0 0 40px rgb( 0 0 0 / 15% );
 		}
-
-//		@media screen and (min-width: 600px) {
-			body {
-				min-width: 1000px;
-			}
-			.section {
-				margin: 15px 15px;
-			}
-			.contents {
-				max-width: 1300px;
-				margin: 0 auto;
-			}
-			.column-main {
-				flex-grow: 1;
-			}
-			.column-sidebar {
-				width: 200px;
-				flex-shrink: 0;
-			}
+		.section {
+			margin: 15px 15px;
+		}
+		.contents {
+			max-width: 1300px;
+			margin: 0 auto 0 0;
+		}
+		.column-main {
+			flex-grow: 1;
+		}
 		.vbox > .borderline {
 			margin: 0 15px;
 			border-top: 1px solid #4e4e4e;
@@ -67,6 +58,21 @@
 		.hbox > .borderline {
 			margin: 15px 0;
 			border-left: 1px solid #4e4e4e;
+		}
+		@media screen and (max-width : 699px) {/*Smart Phone*/
+			.column-sidebar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				
+			}
+		}
+		
+		@media screen and (min-width : 700px) {/*PC Tablet*/
+			.column-sidebar {
+				width: 200px;
+				flex-shrink: 0;
+			}
 		}
 		
 		/* BreadcrumbList Style */
@@ -144,6 +150,10 @@
 			padding: 10px 0;
 			border-radius: 7px;
 		}
+		.comment-form {
+			frameborder: 0;
+			height: 200px;
+		}
 		
 		]]>
 		</b:skin>
@@ -161,6 +171,7 @@
 						<b:case value='index'/>
 						<b:if cond='data:blog.searchLabel'>
 							<b:elseif cond='data:blog.searchQuery'/>
+							<b:include name='search_page'/>
 							<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
 							<b:include name='home_page'/>
 							<b:else/>
@@ -169,16 +180,28 @@
 						<b:default/>
 					</b:switch>
 				</b:includable>
-				<b:includable id='home_page'>
+				<b:includable id='snippets_list'>
 					<b:loop values='data:posts' var='post'>
 						<article class ='vbox'>
-							<header><data:post.title/></header>
-							<div><data:post.snippets.short/>
+							<header>
+								<data:post.title/>
+							</header>
+							<div>
+								<data:post.snippets.short/>
 								<a expr:href='data:post.url'>detail</a>
 							</div>
 							<footer></footer>
 						</article>
 					</b:loop>
+				</b:includable>
+				<b:includable id='search_page'>
+					<b:include name='snippets_list'/>
+				</b:includable>
+				<b:includable id='home_page'>
+					<b:include name='snippets_list'/>
+				</b:includable>
+				<b:includable id='index_page'>
+					<b:include name='snippets_list'/>
 				</b:includable>
 				<b:includable id='item_page'>
 					<b:loop values='data:posts' var='post'>
@@ -204,7 +227,7 @@
 								<data:post.body/>
 							</div>
 							<footer></footer>
-							<section class='comment-section'>
+							<section class='comment-section vbox'>
 								<b:include name='comment_section'/>
 							</section>
 						</article>
@@ -230,7 +253,7 @@
 									</section>
 									<footer class='comment-footer'></footer>
 									<aside class='comment-actions'>
-										<a expr:href='data:post.commentFormIframeSrc + "&amp;parentID=" + data:comment.id' onclick='javascript:window.open(this.href, "bloggerPopup", "toolbar=0,location=0,statusbar=1,menubar=0,scrollbars=yes,width=640,height=500"); return false;' class='reply-button'>返信</a>
+										<a href='javascript:;' class='reply-button'>返信</a>
 										<span expr:class='"hide " + data:comment.adminClass'>
 											<a expr:href='data:comment.deleteUrl' class='comment-delete-button'>削除</a>
 										</span>
@@ -239,9 +262,15 @@
 							</div>
 						</b:loop>
 					</div>
+					<div id='post_comment_button'>コメントを投稿</div>
 					<script type='text/javascript'>
-						//<![CDATA[
+
 (function (){
+	const comment_Iframe_url = "<data:post.commentFormIframeSrc/>";
+						//<![CDATA[
+	const comment_Iframe_reply_url_postfix = "&amp;parentID=";
+	const comment_Iframe_className = 'comment-form';
+	
 	const comments_wrapper = document.getElementById('comments-wrapper');
 	const reply_className = 'reply-holder';
 	const reply_toggle_className = 'reply-toggle';
@@ -255,7 +284,7 @@
 		const elem = comments_wrapper.children[0]
 		elem.remove();
 		temp_cmt_strage.push(elem);
-	}
+	}//すべてのコメントをDOM上から削除して配列に格納する
 	
 	function has_reply(node){
 		for(const elem of node.children){
@@ -267,11 +296,11 @@
 	}
 	
 	const proccessed_cmts = Array();
-	while(temp_cmt_strage.length != 0){
+	while(temp_cmt_strage.length != 0){//未処理のコメントがゼロになるまで続ける
 		const target = temp_cmt_strage.shift();
 		let holder = comments_wrapper;
-		for(const elem of proccessed_cmts){
-			if(elem.id == target.dataset.replyto){
+		for(const elem of proccessed_cmts){//すべての処理済みのコメントに対して
+			if(elem.id == target.dataset.replyto){//ターゲットのリプライ先が一致するものを探し出して
 				let reply_holder;
 				if(!(reply_holder = has_reply(elem))){
 					reply_holder = document.createElement('div');
@@ -282,10 +311,10 @@
 					elem.appendChild(reply_toggle);
 					elem.appendChild(reply_holder);
 				}
-				holder = reply_holder;
+				holder = reply_holder;//リプライホルダーを出す
 				break;
 			}
-		}
+		}//存在しない場合comments_wrapper
 		holder.appendChild(target);
 		proccessed_cmts.push(target);
 	}
@@ -303,6 +332,38 @@
 		elem.addEventListener('click', reply_toggle_callback, false);
 	}
 	
+	//コメントボタンイベント
+	//IFrame作成
+	const comment_form = document.createElement('iframe');
+	comment_form.setAttribute('allowtrandparency', 'true');
+	comment_form.setAttribute('frameborder', '0');
+	comment_form.className = comment_Iframe_className;
+	
+	function reply_post_button_callback(e){//返信投稿コールバック
+		anc_comment_holder = e.currentTarget.parentNode;
+		while(anc_comment_holder != null && !anc_comment_holder.classList.contains('comment-holder')){
+			anc_comment_holder = anc_comment_holder.parentNode;
+		}
+		if(anc_comment_holder == comment_form.parentNode)return;
+		comment_form.remove();
+		comment_form.src = comment_Iframe_url + comment_Iframe_reply_url_postfix + anc_comment_holder.id;
+		const comment_article = anc_comment_holder.getElementsByClassName('comment-article')[0];
+		anc_comment_holder.insertBefore(comment_form, comment_article.nextElementSibling);
+	}
+	function comment_post_button_callback(e){//コメント投稿コールバック
+		if( e.currentTarget.parentNode == comment_form.parentNode )return;
+		comment_form.remove();
+		comment_form.src = comment_Iframe_url;
+		e.currentTarget.parentNode.insertBefore(comment_form, e.currentTarget.nextElementSibling);
+	}
+	
+	let reply_post_buttons = document.getElementsByClassName('reply-button');
+	for( const elem of reply_post_buttons ){
+		elem.addEventListener('click', reply_post_button_callback, false);
+	}
+	document.getElementById('post_comment_button').addEventListener('click', comment_post_button_callback, false);
+	
+	
 })()
 //]]>
 					</script>
@@ -313,13 +374,8 @@
 	</head>
 	<body>
 		<div class='contents vbox'>
-			<header>
-				<nav class='navbar'>
-					<div class='vbox'>
-						<div id='sidebar-button'></div>
-						<div id='scale-button'></div>
-					</div>
-				</nav>
+			<header class='hbox'>
+				<div id='menu-button'></div>
 				<b:section id='ヘッダ'>
 					<b:widget id='Header1' locked='true' title='ヘッダ' type='Header' visible='true'>
 						<b:includable id='main' var='this'>
@@ -379,20 +435,7 @@
 		</div>
 		<script type='text/javascript'>
 //<![CDATA[
-	(function(){
-	
-	const sidebar = document.getElementById('column-sidebar');
-	const sidebar_toggle = document.getElementById('sidebar-button');
-	function sidebar_toggle_callback(e){
-		sidebar.classList.toggle('sidebar-visible');
-	};
-	sidebar_toggle.addEventListener('click', sidebar_toggle_callback, false);
-	function prevent_default_callback(e){
-		e.preventDefault();
-	};
-	sidebar.addEventListener('touchmove', prevent_default_callback, false);
-	
-	})();
+
 //]]>
 		</script>
 	</body>
