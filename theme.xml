@@ -6,9 +6,6 @@
       xmlns:data='http://www.google.com/2005/gml/data'
       xmlns:expr='http://www.google.com/2005/gml/expr'>
 	<head>
-		<b:comment>
-			<b:eval expr='data:view.isLayoutMode ? "true" : "false"'/>a
-		</b:comment>
 		<meta content='width=device-width, initial-scale=1' name='viewport'/>
 		<script src="https://kit.fontawesome.com/cbe35237e7.js" crossorigin="anonymous"></script>
 		<b:skin>
@@ -25,6 +22,13 @@
 		.vbox {
 			display: flex;
 			flex-direction: column;
+		}
+		.hide {
+			display: none;
+		}
+		/* Layout View */
+		#layout .contents {
+			display: block;
 		}
 		
 		/* Layout Style */
@@ -179,10 +183,6 @@
 			border-radius: 7px;
 		}
 		
-		/* Layout View */
-		#layout .contents {
-			display: block;
-		}
 		]]>
 		</b:skin>
 		<b:defaultmarkups>
@@ -206,6 +206,17 @@
 						</b:if>
 						<b:default/>
 					</b:switch>
+				</b:includable>
+				<b:includable id='home_page'>
+					<b:loop values='data:posts' var='post'>
+						<article class ='vbox'>
+							<header><data:post.title/></header>
+							<div><data:post.snippets.short/>
+								<a expr:href='data:post.url'>detail</a>
+							</div>
+							<footer></footer>
+						</article>
+					</b:loop>
 				</b:includable>
 				<b:includable id='item_page'>
 					<b:loop values='data:posts' var='post'>
@@ -253,7 +264,9 @@
 									<footer class='comment-footer'></footer>
 									<aside class='comment-actions'>
 										<a expr:href='data:post.commentFormIframeSrc + "&amp;parentID=" + data:comment.id' onclick='javascript:window.open(this.href, "bloggerPopup", "toolbar=0,location=0,statusbar=1,menubar=0,scrollbars=yes,width=640,height=500"); return false;' class='reply-button'>返信</a>
-										<a expr:href='data:comment.deleteUrl' class='comment-delete-button'>削除</a>
+										<span expr:class='"hide " + data:comment.adminClass'>
+											<a expr:href='data:comment.deleteUrl' class='comment-delete-button'>削除</a>
+										</span>
 									</aside>
 								</article>
 							</div>
