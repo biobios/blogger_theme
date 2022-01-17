@@ -41,45 +41,8 @@
 			background-color: #464646;
 			box-shadow: 0 0 40px rgb( 0 0 0 / 15% );
 		}
-		@media screen and (max-width: 480px) { /* Smart Phone */
-		}
-		@media screen and (min-width: 481px) and (max-width: 1024px) { /* Tablet */
-			.column-sidebar {
-				position: fixed;
-				top: 0;
-				right: -200px;
-				width: 200px;
-				height: 100vh;
-				background-color: #555555;
-				transition: 1s;
-			}
-			.sidebar-visible {
-				right: 0;
-			}
-			#sidebar-button {
-				background-color: #323232;
-				color: #999999;
-				position: fixed;
-				top: 15px;
-				right: 15px;
-				border-radius: calc(50% + 5px);
-				aspect-ratio: 1 / 1;
-				padding: 10px;
-				z-index: 1;
-			}
-			#sidebar-button:before {
-				content: "\f0c9";
-				font-weight: 900;
-				font-family: "Font Awesome 6 Free";
-				font-size: 400%;
-				display: block;
-				height: 1em;
-				aspect-ratio: 1 / 1;
-				margin: auto;
-				text-align: center;
-			}
-		}
-		@media screen and (min-width: 1025px) {
+
+//		@media screen and (min-width: 600px) {
 			body {
 				min-width: 1000px;
 			}
@@ -87,8 +50,8 @@
 				margin: 15px 15px;
 			}
 			.contents {
-				width: 1000px;
-				margin: 15px auto;
+				max-width: 1300px;
+				margin: 0 auto;
 			}
 			.column-main {
 				flex-grow: 1;
@@ -96,8 +59,7 @@
 			.column-sidebar {
 				width: 200px;
 				flex-shrink: 0;
-			}			
-		}
+			}
 		.vbox > .borderline {
 			margin: 0 15px;
 			border-top: 1px solid #4e4e4e;
@@ -254,6 +216,11 @@
 							<div expr:id='data:comment.id' expr:data-replyto='data:comment.inReplyTo' class='comment-holder vbox'>
 								<article class='comment-article'>
 									<header class='comment-header'>
+										<span class='comment-author'>
+											<b:tag name='a' expr:href='data:comment.authorUrl' cond='data:comment.authorUrl'>
+												<data:comment.author/>
+											</b:tag>
+										</span>
 										<time>
 											<data:comment.timestamp/>
 										</time>
@@ -363,6 +330,24 @@
 			</header>
 			<div class='borderline'></div>
 			<div class='center-columns hbox'>
+				<aside id='column-sidebar' class='column-sidebar'>
+					<b:section id='サイドバー'>
+						<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
+							<b:includable id='main'>
+								<b:if cond='data:title != &quot;&quot;'>
+									<h2>
+										<data:title/>
+									</h2>
+								</b:if>
+								<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
+									<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
+									<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
+								</form>
+							</b:includable>
+						</b:widget>
+					</b:section>
+				</aside>
+				<div class='borderline'></div>
 				<main class='column-main'>
 					<b:section id='メイン'>
 						<b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' visible='true'>
@@ -387,24 +372,6 @@
 						</b:widget>
 					</b:section>
 				</main>
-				<div class='borderline'></div>
-				<aside id='column-sidebar' class='column-sidebar'>
-					<b:section id='サイドバー'>
-						<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
-							<b:includable id='main'>
-								<b:if cond='data:title != &quot;&quot;'>
-									<h2>
-										<data:title/>
-									</h2>
-								</b:if>
-								<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
-									<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
-									<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
-								</form>
-							</b:includable>
-						</b:widget>
-					</b:section>
-				</aside>
 			</div>
 			<footer>
 				<b:section id='フッタ'></b:section>
