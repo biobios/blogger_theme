@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html b:layoutsVersion='3' b:defaultwidgetversion='2' b:css='false' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale'
+	  xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:b='http://www.google.com/2005/gml/b'
+      xmlns:data='http://www.google.com/2005/gml/data'
+      xmlns:expr='http://www.google.com/2005/gml/expr'>
+	<head>
+		<b:comment>
+			<b:eval expr='data:view.isLayoutMode ? "true" : "false"'/>a
+		</b:comment>
+		<meta content='width=device-width, initial-scale=1' name='viewport'/>
+		<script src="https://kit.fontawesome.com/cbe35237e7.js" crossorigin="anonymous"></script>
+		<b:skin>
+			<![CDATA[
+		/* Common Style */
+		a {
+			color: rgb(90 181 178);
+			text-decoration: none;
+		}
+		.hbox {
+			display: flex;
+			flex-direction: row;
+		}
+		.vbox {
+			display: flex;
+			flex-direction: column;
+		}
+		
+		/* Layout Style */
+		body {
+			background-color: #414141;
+			color: #cecece;
+			margin: 0;
+		}
+		.contents {
+			background-color: #464646;
+			box-shadow: 0 0 40px rgb( 0 0 0 / 15% );
+		}
+		@media screen and (max-width: 480px) { /* Smart Phone */
+		}
+		@media screen and (min-width: 481px) and (max-width: 1024px) { /* Tablet */
+			.column-sidebar {
+				position: fixed;
+				top: 0;
+				right: -200px;
+				width: 200px;
+				height: 100vh;
+				background-color: #555555;
+				transition: 1s;
+			}
+			.sidebar-visible {
+				right: 0;
+			}
+			#sidebar-button {
+				background-color: #323232;
+				color: #999999;
+				position: fixed;
+				top: 15px;
+				right: 15px;
+				border-radius: calc(50% + 5px);
+				aspect-ratio: 1 / 1;
+				padding: 10px;
+				z-index: 1;
+			}
+			#sidebar-button:before {
+				content: "\f0c9";
+				font-weight: 900;
+				font-family: "Font Awesome 6 Free";
+				font-size: 400%;
+				display: block;
+				height: 1em;
+				aspect-ratio: 1 / 1;
+				margin: auto;
+				text-align: center;
+			}
+		}
+		@media screen and (min-width: 1025px) {
+			body {
+				min-width: 1000px;
+			}
+			.section {
+				margin: 15px 15px;
+			}
+			.contents {
+				width: 1000px;
+				margin: 15px auto;
+			}
+			.column-main {
+				flex-grow: 1;
+			}
+			.column-sidebar {
+				width: 200px;
+				flex-shrink: 0;
+			}			
+		}
+		.vbox > .borderline {
+			margin: 0 15px;
+			border-top: 1px solid #4e4e4e;
+		}
+		.hbox > .borderline {
+			margin: 15px 0;
+			border-left: 1px solid #4e4e4e;
+		}
+		
+		/* BreadcrumbList Style */
+		.breadcrumb {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		.breadcrumb>li {
+			display: inline;
+		}
+		.breadcrumb>li:not([class]):after {
+			content: '/';
+		}
+		.breadcrumb>.current_dir_crumb:after {
+			content: '>'
+		}
+		.breadcrumb>.current_page_crumb:before {
+			content: 'browse '
+		}
+		
+		/* Comment Section Style */
+		.comment-holder {
+			margin-left: 15px;
+		}
+		[class^="reply-toggle"]{
+			margin-right: auto;
+			cursor: pointer;
+		}
+		.reply-toggle-collapsed ~ * {
+			display: none;
+		}
+		.reply-button:before {
+			content: '\f27a';
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+		}
+		.reply-toggle-expanded:before {
+			content: "\f0d7";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+		}
+		.reply-toggle-collapsed:before {
+			content: "\f0da";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+		}
+		.comment-delete-button:before {
+			content: "\f1f8";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+		}
+		.blogger-comment-from-post {
+			width: 100%;
+			height: 200px;
+		}
+		#comments-wrapper>.comment-holder {
+			background-color: #585858;
+			margin: 10px 0;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		.comment-article {
+			background-color: #727272;
+			padding: 5px;
+			border-radius: 3px;
+			margin: 5px 0;
+		}
+		#post_comment_button{
+			text-align: center;
+			background-color: #2a2a2a;
+			margin-bottom: 15px;
+			padding: 10px 0;
+			border-radius: 7px;
+		}
+		
+		/* Layout View */
+		#layout .contents {
+			display: block;
+		}
+		]]>
+		</b:skin>
+		<b:defaultmarkups>
+			<b:defaultmarkup type='Blog'>
+				<b:includable id='main'>
+					<b:if cond='data:navMessage'>
+						<data:navMessage/>
+					</b:if>
+					<b:switch var='data:blog.pageType'>
+						<b:case value='item'/>
+						<b:include name='item_page'/>
+						<b:case value='static_page'/>
+						<b:case value='error_page'/>
+						<b:case value='index'/>
+						<b:if cond='data:blog.searchLabel'>
+							<b:elseif cond='data:blog.searchQuery'/>
+							<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
+							<b:include name='home_page'/>
+							<b:else/>
+							<b:include name='index_page'/>
+						</b:if>
+						<b:default/>
+					</b:switch>
+				</b:includable>
+				<b:includable id='item_page'>
+					<b:loop values='data:posts' var='post'>
+						<nav>
+							<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
+								--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
+									--&gt;<a expr:href='data:blog.homepageUrl' itemscope='itemscope' itemprop='item'><span itemprop='name'>root</span></a>&lt;!--
+									--&gt;<meta itemprop='position' content='1'/>&lt;!--
+								--&gt;</li>&lt;!--
+								--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
+									--&gt;<a itemscope='itemscope' expr:href='data:blog.homepageUrl + "search"' itemprop='item'><span itemprop='name'>個別記事</span></a>&lt;!--
+									--&gt;<meta itemprop='position' content='2'/>&lt;!--
+								--&gt;</li>&lt;!--
+								--&gt;<li class='current_page_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
+									--&gt;<span itemprop='name'><data:post.title/></span>&lt;!--
+									--&gt;<meta itemprop='position' content='3'/>&lt;!--
+								--&gt;</li>
+							</ol>
+						</nav>
+						<article class='vbox'>
+							<header></header>
+							<div class='article-body'>
+								<data:post.body/>
+							</div>
+							<footer></footer>
+							<section class='comment-section'>
+								<b:include name='comment_section'/>
+							</section>
+						</article>
+					</b:loop>
+				</b:includable>
+				<b:includable id='comment_section'>
+					<div id='comments-wrapper'>
+						<b:loop var='comment' values='data:post.comments'>
+							<div expr:id='data:comment.id' expr:data-replyto='data:comment.inReplyTo' class='comment-holder vbox'>
+								<article class='comment-article'>
+									<header class='comment-header'>
+										<time>
+											<data:comment.timestamp/>
+										</time>
+									</header>
+									<section class='comment-body'>
+										<data:comment.body/>
+									</section>
+									<footer class='comment-footer'></footer>
+									<aside class='comment-actions'>
+										<a expr:href='data:post.commentFormIframeSrc + "&amp;parentID=" + data:comment.id' onclick='javascript:window.open(this.href, "bloggerPopup", "toolbar=0,location=0,statusbar=1,menubar=0,scrollbars=yes,width=640,height=500"); return false;' class='reply-button'>返信</a>
+										<a expr:href='data:comment.deleteUrl' class='comment-delete-button'>削除</a>
+									</aside>
+								</article>
+							</div>
+						</b:loop>
+					</div>
+					<script type='text/javascript'>
+						//<![CDATA[
+(function (){
+	const comments_wrapper = document.getElementById('comments-wrapper');
+	const reply_className = 'reply-holder';
+	const reply_toggle_className = 'reply-toggle';
+	const expanded_postfix = '-expanded';
+	const collapsed_postfix = '-collapsed';
+	const default_postfix = expanded_postfix;
+	const reply_toggleText = '返信';
+	
+	const temp_cmt_strage = Array();
+	while(comments_wrapper.children.length != 0){
+		const elem = comments_wrapper.children[0]
+		elem.remove();
+		temp_cmt_strage.push(elem);
+	}
+	
+	function has_reply(node){
+		for(const elem of node.children){
+			if(elem.className == (reply_className)){
+				return elem;
+			}
+		}
+		return null;
+	}
+	
+	const proccessed_cmts = Array();
+	while(temp_cmt_strage.length != 0){
+		const target = temp_cmt_strage.shift();
+		let holder = comments_wrapper;
+		for(const elem of proccessed_cmts){
+			if(elem.id == target.dataset.replyto){
+				let reply_holder;
+				if(!(reply_holder = has_reply(elem))){
+					reply_holder = document.createElement('div');
+					reply_holder.className = reply_className;
+					const reply_toggle = document.createElement('div');
+					reply_toggle.className = reply_toggle_className + default_postfix;
+					reply_toggle.innerText = reply_toggleText;
+					elem.appendChild(reply_toggle);
+					elem.appendChild(reply_holder);
+				}
+				holder = reply_holder;
+				break;
+			}
+		}
+		holder.appendChild(target);
+		proccessed_cmts.push(target);
+	}
+	
+	function reply_toggle_callback(e){
+		if(e.currentTarget.className.includes(expanded_postfix)){
+			e.currentTarget.className = reply_toggle_className + collapsed_postfix;
+		}else{
+			e.currentTarget.className = reply_toggle_className + expanded_postfix;
+		}
+	}
+	
+	const reply_toggles = document.getElementsByClassName(reply_toggle_className + expanded_postfix);
+	for(const elem of reply_toggles){
+		elem.addEventListener('click', reply_toggle_callback, false);
+	}
+	
+})()
+//]]>
+					</script>
+				</b:includable>
+			</b:defaultmarkup>
+		</b:defaultmarkups>
+		<b:include data='blog' name='google-analytics'/>
+	</head>
+	<body>
+		<div class='contents vbox'>
+			<header>
+				<nav class='navbar'>
+					<div class='vbox'>
+						<div id='sidebar-button'></div>
+						<div id='scale-button'></div>
+					</div>
+				</nav>
+				<b:section id='ヘッダ'>
+					<b:widget id='Header1' locked='true' title='ヘッダ' type='Header' visible='true'>
+						<b:includable id='main' var='this'>
+							<b:include name='title'/>
+						</b:includable>
+					</b:widget>
+				</b:section>
+			</header>
+			<div class='borderline'></div>
+			<div class='center-columns hbox'>
+				<main class='column-main'>
+					<b:section id='メイン'>
+						<b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' visible='true'>
+							<b:includable id='main'>
+								<b:if cond='data:navMessage'>
+									<data:navMessage/>
+								</b:if>
+								<b:switch var='data:blog.pageType'>
+									<b:case value='item'/>
+									<b:include name='item_page'/>
+									<b:case value='static_page'/>
+									<b:default/>
+									<b:if cond='data:blog.searchLabel'>
+										<b:elseif cond='data:blog.searchQuery'/>
+										<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
+										<b:include name='home_page'/>
+										<b:else/>
+										<b:include name='index_page'/>
+									</b:if>
+								</b:switch>
+							</b:includable>
+						</b:widget>
+					</b:section>
+				</main>
+				<div class='borderline'></div>
+				<aside id='column-sidebar' class='column-sidebar'>
+					<b:section id='サイドバー'>
+						<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
+							<b:includable id='main'>
+								<b:if cond='data:title != &quot;&quot;'>
+									<h2>
+										<data:title/>
+									</h2>
+								</b:if>
+								<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
+									<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
+									<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
+								</form>
+							</b:includable>
+						</b:widget>
+					</b:section>
+				</aside>
+			</div>
+			<footer>
+				<b:section id='フッタ'></b:section>
+			</footer>
+		</div>
+		<script type='text/javascript'>
+//<![CDATA[
+	(function(){
+	
+	const sidebar = document.getElementById('column-sidebar');
+	const sidebar_toggle = document.getElementById('sidebar-button');
+	function sidebar_toggle_callback(e){
+		sidebar.classList.toggle('sidebar-visible');
+	};
+	sidebar_toggle.addEventListener('click', sidebar_toggle_callback, false);
+	function prevent_default_callback(e){
+		e.preventDefault();
+	};
+	sidebar.addEventListener('touchmove', prevent_default_callback, false);
+	
+	})();
+//]]>
+		</script>
+	</body>
+</html>
