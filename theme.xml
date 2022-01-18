@@ -154,10 +154,28 @@
 			frameborder: 0;
 			height: 200px;
 		}
+		/*Attribution style*/
+		.Attribution .blogger a {
+			display: flex;
+			justify-content: center;
+		}
+		.Attribution svg{
+			height: 24px;
+			aspect-ratio: 1;
+		}
 		
 		]]>
 		</b:skin>
 		<b:defaultmarkups>
+			<b:defaultmarkup type='Attribution'>
+				<b:includable id='main'>
+					<div class='attribution-box'>
+						<b:if cond='data:attribution != &quot;&quot;'>
+							<data:attribution/>
+						</b:if>
+					</div>
+				</b:includable>
+			</b:defaultmarkup>
 			<b:defaultmarkup type='Blog'>
 				<b:includable id='main'>
 					<b:if cond='data:navMessage'>
@@ -404,34 +422,46 @@
 					</b:section>
 				</aside>
 				<div class='borderline'></div>
-				<main class='column-main'>
-					<b:section id='メイン'>
-						<b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' visible='true'>
-							<b:includable id='main'>
-								<b:if cond='data:navMessage'>
-									<data:navMessage/>
-								</b:if>
-								<b:switch var='data:blog.pageType'>
-									<b:case value='item'/>
-									<b:include name='item_page'/>
-									<b:case value='static_page'/>
-									<b:default/>
-									<b:if cond='data:blog.searchLabel'>
-										<b:elseif cond='data:blog.searchQuery'/>
-										<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
-										<b:include name='home_page'/>
-										<b:else/>
-										<b:include name='index_page'/>
+				<div class='column-main'>
+					<main class='main'>
+						<b:section id='メイン'>
+							<b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' visible='true'>
+								<b:includable id='main'>
+									<b:if cond='data:navMessage'>
+										<data:navMessage/>
 									</b:if>
-								</b:switch>
-							</b:includable>
-						</b:widget>
-					</b:section>
-				</main>
+									<b:switch var='data:blog.pageType'>
+										<b:case value='item'/>
+										<b:include name='item_page'/>
+										<b:case value='static_page'/>
+										<b:default/>
+										<b:if cond='data:blog.searchLabel'>
+											<b:elseif cond='data:blog.searchQuery'/>
+											<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
+											<b:include name='home_page'/>
+											<b:else/>
+											<b:include name='index_page'/>
+										</b:if>
+									</b:switch>
+								</b:includable>
+							</b:widget>
+						</b:section>
+					</main>
+					<footer>
+						<b:section id='フッタ'>
+							<b:widget id='Attribution1' locked='true' title='帰属' type='Attribution'>
+								<b:includable id='main'>
+									<div class='attribution-box'>
+										<b:if cond='data:attribution != &quot;&quot;'>
+											<data:attribution/>
+										</b:if>
+									</div>
+								</b:includable>
+							</b:widget>
+						</b:section>
+					</footer>
+				</div>
 			</div>
-			<footer>
-				<b:section id='フッタ'></b:section>
-			</footer>
 		</div>
 		<script type='text/javascript'>
 //<![CDATA[
