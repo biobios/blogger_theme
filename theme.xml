@@ -151,6 +151,9 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		.breadcrumb>.current_page_crumb:before {
 			content: 'browse '
 		}
+		.command-search:before {
+			content: 'echo search $ALL ';
+		}
 		
 		/*Index Snippets style*/
 		.snippet {
@@ -178,12 +181,19 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		.update-time:after {
 			content: '更新';
 		}
+		/*Article inner style*/
 		.article-body {
 			background-color: #2e2e2e;
 			padding: 15px;
 			margin: 10px 0;
 			text-align: justify;
 			border-radius: 5px;
+		}
+		.article-image-wrapper {
+			display: block;
+		}
+		.article-image {
+			width: 100%;
 		}
 		/*Labels style*/
 		.labels {
@@ -366,19 +376,19 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<b:include name='HierarchyArchive'/>
 				</b:includable>
 				<b:includable id='HierarchyArchive'>
-					<ol>
+					<ol class='hierarchy-archive'>
 						<b:loop values='data:data' var='level1'>
 							<li>
 								<a expr:href='data:level1.url'>
 									<data:level1.name/>
 								</a>
-								<ol>
+								<ol class='hierarchy-archive'>
 									<b:loop values='data:level1.data' var='level2'>
 										<li>
 											<a expr:href='data:level2.url'>
 												<data:level2.name/>
 											</a>
-											<ol>
+											<ol class='hierarchy-archive'>
 												<b:loop values='data:level2.data' var='level3'>
 													<a expr:href='data:level3.url'>
 														<data:level3.name/>
@@ -478,9 +488,11 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 						<b:case value='static_page'/>
 						<b:include name='static_page'/>
 						<b:case value='error_page'/>
+						<b:case value='archive'/>
+						<b:include name='archive_page'/>
 						<b:case value='index'/>
 						<b:if cond='data:blog.searchLabel'>
-							<b:include name='search_page'/>
+							<b:include name='searchLabel_page'/>
 							<b:elseif cond='data:blog.searchQuery'/>
 							<b:include name='search_page'/>
 							<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
@@ -491,6 +503,21 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 						<b:default/>
 					</b:switch>
 					<b:include name='simple_pager'/>
+				</b:includable>
+				<b:includable id='archive_page'>
+					<b:include name='snippets_list'/>
+				</b:includable>
+				<b:includable id='searchLabel_page'>
+					<nav>
+						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
+							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
+								--&gt;<a expr:href='data:blog.homepageUrl' itemscope='itemscope' itemprop='item'><span itemprop='name'>root</span></a>&lt;!--
+								--&gt;<meta itemprop='position' content='1'/>&lt;!--
+							--&gt;</li>&lt;!--
+							--&gt;<li class='command-search'>&quot;<data:view.search.label.escaped/>&quot;</li>
+						</ol>
+					</nav>
+					<b:include name='snippets_list'/>
 				</b:includable>
 				<b:includable id='snippets_list'>
 					<b:loop values='data:posts' var='post'>
@@ -536,9 +563,27 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					</b:loop>
 				</b:includable>
 				<b:includable id='search_page'>
+					<nav>
+						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
+							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
+								--&gt;<a expr:href='data:blog.homepageUrl' itemscope='itemscope' itemprop='item'><span itemprop='name'>root</span></a>&lt;!--
+								--&gt;<meta itemprop='position' content='1'/>&lt;!--
+							--&gt;</li>&lt;!--
+							--&gt;<li class='command-search'>&quot;<data:view.search.query.escaped/>&quot;</li>
+						</ol>
+					</nav>
 					<b:include name='snippets_list'/>
 				</b:includable>
 				<b:includable id='home_page'>
+					<nav>
+						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>
+							<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>
+								<span itemprop='name'>root</span>
+								<meta itemprop='position' content='1'/>
+							</li>
+							<li class='command'>echo $ALL</li>
+						</ol>
+					</nav>
 					<b:include name='snippets_list'/>
 				</b:includable>
 				<b:includable id='index_page'>
@@ -553,7 +598,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									--&gt;<meta itemprop='position' content='1'/>&lt;!--
 								--&gt;</li>&lt;!--
 								--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
-									--&gt;<a itemscope='itemscope' expr:href='data:post.labels.first.url' itemprop='item'><span itemprop='name'><data:post.labels.first.name/></span></a>&lt;!--
+									--&gt;<a itemscope='itemscope' expr:href='data:post.labels.first.url' itemprop='item' id='category-crumb'><span itemprop='name'><data:post.labels.first.name/></span></a>&lt;!--
 									--&gt;<meta itemprop='position' content='2'/>&lt;!--
 								--&gt;</li>&lt;!--
 								--&gt;<li class='current_page_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
@@ -583,7 +628,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 								<ul class='labels'>
 									<b:loop values='data:post.labels' var='label'>
 										<li class='label'>
-											<a expr:href='data:label.url'>
+											<a expr:href='data:label.url' class='article-label'>
 												<data:label.name/>
 											</a>
 										</li>
@@ -595,6 +640,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 							</section>
 						</article>
 					</b:loop>
+					<b:include name='label_js'/>
 				</b:includable>
 				<b:includable id='simple_pager'>
 					<nav class='pager-wrapper hbox'>
@@ -745,6 +791,28 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 //]]>
 					</script>
 				</b:includable>
+				<b:includable id='label_js'>
+					<script type='text/javascript'>
+//<![CDATA[
+	(function(){
+	
+		const category_chara = '🅲';
+		const labels = document.getElementsByClassName('article-label');
+		let label = null;
+		for( const l of labels ){
+			if(l.innerText.includes(category_chara)){
+				label = l;
+				break;
+			}
+		}
+		const label_container = document.getElementById('category-crumb');
+		label_container.href = label.href;
+		label_container.children[0].innerText = label.innerText.slice(2);
+	
+	})();
+//]]>
+					</script>
+				</b:includable>
 			</b:defaultmarkup>
 		</b:defaultmarkups>
 		<b:include data='blog' name='google-analytics'/>
@@ -832,9 +900,11 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 										<b:case value='static_page'/>
 										<b:include name='static_page'/>
 										<b:case value='error_page'/>
+										<b:case value='archive'/>
+										<b:include name='archive_page'/>
 										<b:case value='index'/>
 										<b:if cond='data:blog.searchLabel'>
-											<b:include name='search_page'/>
+											<b:include name='searchLabel_page'/>
 											<b:elseif cond='data:blog.searchQuery'/>
 											<b:include name='search_page'/>
 											<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
