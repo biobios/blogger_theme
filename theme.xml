@@ -7,6 +7,11 @@
       xmlns:expr='http://www.google.com/2005/gml/expr'>
 	<head>
 		<meta content='width=device-width, initial-scale=1' name='viewport'/>
+		<meta name='description' expr:content='data:blog.metaDescription'/>
+		<title>
+			<data:blog.title/>
+		</title>
+		<link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
 		<script src="https://kit.fontawesome.com/cbe35237e7.js" crossorigin="anonymous"></script>
 		<b:skin>
 			<![CDATA[
@@ -39,6 +44,12 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		#layout .contents {
 			display: block;
 		}
+		#layout #page-header{
+			position: static;
+		}
+		#layout .column-sidebar{
+			position: static;
+		}
 		
 		/* Layout Style */
 		body {
@@ -50,12 +61,15 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			margin: 15px 15px;
 		}
 		.contents {
-			max-width: 1300px;
 			margin: 0 auto 0 0;
 		}
-		.column-main {
+		#main-wrapper {
+			overflow-y: auto;
 			flex-grow: 1;
-			box-shadow: 0 0 40px rgb( 0 0 0 / 15% );
+		}
+		#column-main {
+			max-width: 1024px;
+			flex-grow: 1;
 		}
 		.vbox > .borderline {
 			margin: 0 15px;
@@ -87,26 +101,38 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			text-align: center;
 		}
 		#page-header {
-			background-color: #414141;
+			background-color: #1c1c1c;
 			position: fixed;
 			left: 0;
 			top: 0;
 			width: 100vw;
 		}
-
+		/*Sidebar style*/
 		.column-sidebar {
 			background-color: #414141;
 			position: fixed;
+			overflow-y: auto;
 			bottom: 0;
-			width: 200px;
+			width: 300px;
 			transition: 0.5s;
 		}
-
 		#sidebar-wrapper {
 			flex-shrink: 0;
 			transition: 0.5s;
 		}
-		
+		#column-sidebar .Profile, #column-sidebar .PageList, #column-sidebar .Label {
+		    background-color: #2e2e2e;
+			margin: 10px 0;
+			padding: 10px;
+			border-radius: 10px;
+		}
+		/*Message style*/
+		.message {
+			background-color: #3a3a3a;
+			margin: 10px 0;
+			padding: 10px;
+			border-radius: 10px;
+		}
 		/* BreadcrumbList Style */
 		.breadcrumb {
 			list-style-type: none;
@@ -124,6 +150,56 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		}
 		.breadcrumb>.current_page_crumb:before {
 			content: 'browse '
+		}
+		
+		/*Index Snippets style*/
+		.snippet {
+			background-color: #303030;
+			box-shadow: 0 0 10px rgb( 0 0 0 / 15% );
+			padding: 10px;
+			margin: 10px 0;
+			border-radius: 5px;
+		}
+		/*Article style*/
+		.article-header {
+			background-color: #b0b0b0;
+			color: #303030;
+			border-radius: 10px;
+			padding: 5px;
+			margin: 5px 0;
+		}
+		.article-title {
+			font-size: 2em;
+			font-weight: bold;
+		}
+		.create-time:after {
+			content: '作成';
+		}
+		.update-time:after {
+			content: '更新';
+		}
+		.article-body {
+			background-color: #2e2e2e;
+			padding: 15px;
+			margin: 10px 0;
+			text-align: justify;
+			border-radius: 5px;
+		}
+		/*Labels style*/
+		.labels {
+			list-style-type: none;
+			margin: 5px;
+			padding: 0;
+		}
+		.labels:before {
+			content: 'Labels:';
+		}
+		.label {
+			display: inline-block;
+			background-color: #2e2e2e;
+			margin: 5px;
+			padding: 5px;
+			border-radius: 15px;
 		}
 		
 		/* Comment Section Style */
@@ -186,10 +262,65 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			frameborder: 0;
 			height: 200px;
 		}
+		/*Pager Style*/
+		[class^="prev-pager"] {
+			flex-grow: 1;
+			text-align: start;
+			padding: 10px;
+			border-radius: 10px;
+			margin-right: 10px;
+		}
+		[class^="next-pager"] {
+			flex-grow: 1;
+			text-align: end;
+			padding: 10px;
+			border-radius: 10px;
+		}
+		[class^="prev-pager"]:before {
+			content: '\f053';
+			font-family: 'Font Awesome 6 Free';
+			font-weight: 900;
+		}
+		[class^="next-pager"]:before {
+			content: '\f054';
+			font-family: 'Font Awesome 6 Free';
+			font-weight: 900;
+		}
+		.prev-pager-active {
+			background-color: #282828;
+		}
+		.next-pager-active {
+			background-color: #282828;
+		}
+		.prev-pager-nonactive {
+			background-color: #3a3a3a;
+		}
+		.next-pager-nonactive {
+			background-color: #3a3a3a;
+		}
 		/*Header Style*/
 		.header-title {
 			font-size: 1.5em;
 			font-weight: bold;
+		}
+		/*SearchBox Style*/
+		.search-wrapper, .search-textbox, .search-button {
+			color: #ffffff;
+			background-color: #2e2e2e;
+			border: 0 none transparent;
+			outline: transparent none 0;
+		}
+		.search-textbox {
+			flex-grow: 1;
+			padding: 5px 0;
+		}
+		.search-button:before {
+			content: '\f002';
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+		}
+		.search-textbox:hover, .search-button:hover {
+			background-color: #202020;
 		}
 		/*Attribution style*/
 		.Attribution .blogger a {
@@ -200,10 +331,131 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			height: 24px;
 			aspect-ratio: 1;
 		}
+		/*Author Introduction style*/
+		.Profile {
+			display: flex;
+			flex-direction: column;
+		}
+		.Profile .avatar-icon {
+			background-color: #5ab5b2;
+			width: 50%;
+			aspect-ratio: 1;
+			margin: 10px auto;
+			border-radius: 50%;
+		}
+		.Profile .author-name {
+			text-align: center;
+			font-weight: bold;
+			margin: 0 auto;
+		}
+		/*ReportAbuse style*/
+		.ReportAbuse h3 {
+			text-align: center;
+			margin: 0;
+		}
+		.report_abuse {
+			color: #606060;
+			font-size: 0.8em;
+		}
 		
 		]]>
 		</b:skin>
 		<b:defaultmarkups>
+			<b:defaultmarkup type='BlogArchive'>
+				<b:includable id='main'>
+					<b:include name='HierarchyArchive'/>
+				</b:includable>
+				<b:includable id='HierarchyArchive'>
+					<ol>
+						<b:loop values='data:data' var='level1'>
+							<li>
+								<a expr:href='data:level1.url'>
+									<data:level1.name/>
+								</a>
+								<ol>
+									<b:loop values='data:level1.data' var='level2'>
+										<li>
+											<a expr:href='data:level2.url'>
+												<data:level2.name/>
+											</a>
+											<ol>
+												<b:loop values='data:level2.data' var='level3'>
+													<a expr:href='data:level3.url'>
+														<data:level3.name/>
+													</a>
+												</b:loop>
+											</ol>
+										</li>
+									</b:loop>
+								</ol>
+							</li>
+						</b:loop>
+					</ol>
+				</b:includable>
+			</b:defaultmarkup>
+			<b:defaultmarkup type='Label'>
+				<b:includable id='main'>
+					<b:include name='widget-title'/>
+					<b:include name='labelList'/>
+				</b:includable>
+				<b:includable id='labelList'>
+					<ul expr:class='&quot;labelList-&quot; + data:display'>
+						<b:loop values='data:labels' var='label'>
+							<li>
+								<a expr:href='data:label.url'><data:label.name/></a>
+							</li>
+						</b:loop>
+					</ul>
+				</b:includable>
+			</b:defaultmarkup>
+			<b:defaultmarkup type='PageList'>
+				<b:includable id='main'>
+					<b:include name='widget-title'/>
+					<ul>
+						<b:loop values='data:links' var='link'>
+							<li>
+								<a expr:href='data:link.href'><data:link.title/></a>
+							</li>
+						</b:loop>
+					</ul>
+				</b:includable>
+			</b:defaultmarkup>
+			<b:defaultmarkup type='ReportAbuse'>
+				<b:includable id='main'>
+					<b:include name='reportAbuse'/>
+				</b:includable>
+			</b:defaultmarkup>
+			<b:defaultmarkup type='Profile'>
+				<b:includable id='main'>
+					<b:if cond='data:authorPhoto.image'>
+						<img expr:alt='data:messages.myPhoto' expr:height='data:authorPhoto.height' expr:src='data:authorPhoto.image' expr:width='data:authorPhoro.width'/>
+						<b:else/>
+						<b:include data='{ iconClass: &quot;author-avatar-icon&quot; }' name='defaultAvatarIcon'/>
+					</b:if>
+					<b:include name='userProfileInfo'/>
+				</b:includable>
+				<b:includable id='userProfileInfo'>
+					<a class='author-name' expr:href='data:userUrl' rel='author nofollow'>
+						<data:displayname/>
+					</a>
+					<b:if cond='data:aboutme != &quot;&quot;'>
+						<data:aboutme/>
+					</b:if>
+				</b:includable>
+			</b:defaultmarkup>
+			<b:defaultmarkup type='BlogSearch'>
+				<b:includable id='main'>
+					<b:if cond='data:title != &quot;&quot;'>
+						<h2>
+							<data:title/>
+						</h2>
+					</b:if>
+					<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
+						<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
+						<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
+					</form>
+				</b:includable>
+			</b:defaultmarkup>
 			<b:defaultmarkup type='Attribution'>
 				<b:includable id='main'>
 					<div class='attribution-box'>
@@ -216,15 +468,19 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			<b:defaultmarkup type='Blog'>
 				<b:includable id='main'>
 					<b:if cond='data:navMessage'>
-						<data:navMessage/>
+						<div class='message'>
+							<data:navMessage/>
+						</div>
 					</b:if>
 					<b:switch var='data:blog.pageType'>
 						<b:case value='item'/>
 						<b:include name='item_page'/>
 						<b:case value='static_page'/>
+						<b:include name='static_page'/>
 						<b:case value='error_page'/>
 						<b:case value='index'/>
 						<b:if cond='data:blog.searchLabel'>
+							<b:include name='search_page'/>
 							<b:elseif cond='data:blog.searchQuery'/>
 							<b:include name='search_page'/>
 							<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
@@ -234,18 +490,48 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 						</b:if>
 						<b:default/>
 					</b:switch>
+					<b:include name='simple_pager'/>
 				</b:includable>
 				<b:includable id='snippets_list'>
 					<b:loop values='data:posts' var='post'>
-						<article class ='vbox'>
+						<article class ='vbox snippet'>
 							<header>
-								<data:post.title/>
+								<a expr:href='data:post.url'>
+									<data:post.title/>
+								</a>
 							</header>
 							<div>
 								<data:post.snippets.short/>
 								<a expr:href='data:post.url'>detail</a>
 							</div>
 							<footer></footer>
+						</article>
+					</b:loop>
+				</b:includable>
+				<b:includable id='static_page'>
+					<b:loop values='data:posts' var='post'>
+						<article class='vbox'>
+							<header class='article-header'>
+								<div class='article-title'>
+									<data:post.title/>
+								</div>
+								<div class='article-time-info'>
+									<time class='create-time'>
+										<data:post.date/>
+									</time>
+									<time class='update-time'>
+										<data:post.lastUpdated/>
+									</time>
+								</div>
+							</header>
+							<div class='article-body'>
+								<data:post.body/>
+							</div>
+							<footer>
+							</footer>
+							<section class='comment-section vbox'>
+								<b:include name='comment_section'/>
+							</section>
 						</article>
 					</b:loop>
 				</b:includable>
@@ -267,7 +553,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									--&gt;<meta itemprop='position' content='1'/>&lt;!--
 								--&gt;</li>&lt;!--
 								--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
-									--&gt;<a itemscope='itemscope' expr:href='data:blog.homepageUrl + "search"' itemprop='item'><span itemprop='name'>個別記事</span></a>&lt;!--
+									--&gt;<a itemscope='itemscope' expr:href='data:post.labels.first.url' itemprop='item'><span itemprop='name'><data:post.labels.first.name/></span></a>&lt;!--
 									--&gt;<meta itemprop='position' content='2'/>&lt;!--
 								--&gt;</li>&lt;!--
 								--&gt;<li class='current_page_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
@@ -277,16 +563,52 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 							</ol>
 						</nav>
 						<article class='vbox'>
-							<header></header>
+							<header class='article-header'>
+								<div class='article-title'>
+									<data:post.title/>
+								</div>
+								<div class='article-time-info'>
+									<time class='create-time'>
+										<data:post.date/>
+									</time>
+									<time class='update-time'>
+										<data:post.lastUpdated/>
+									</time>
+								</div>
+							</header>
 							<div class='article-body'>
 								<data:post.body/>
 							</div>
-							<footer></footer>
+							<footer>
+								<ul class='labels'>
+									<b:loop values='data:post.labels' var='label'>
+										<li class='label'>
+											<a expr:href='data:label.url'>
+												<data:label.name/>
+											</a>
+										</li>
+									</b:loop>
+								</ul>
+							</footer>
 							<section class='comment-section vbox'>
 								<b:include name='comment_section'/>
 							</section>
 						</article>
 					</b:loop>
+				</b:includable>
+				<b:includable id='simple_pager'>
+					<nav class='pager-wrapper hbox'>
+						<b:if cond='data:olderPageUrl'>
+							<a expr:href='data:olderPageUrl' class='prev-pager-active'></a>
+							<b:else/>
+							<span class='prev-pager-nonactive'></span>
+						</b:if>
+						<b:if cond='data:newerPageUrl'>
+							<a expr:href='data:newerPageUrl' class='next-pager-active'></a>
+							<b:else/>
+							<span class='next-pager-nonactive'></span>
+						</b:if>
+					</nav>
 				</b:includable>
 				<b:includable id='comment_section'>
 					<div id='comments-wrapper'>
@@ -451,41 +773,78 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 						<b:section id='サイドバー'>
 							<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
 								<b:includable id='main'>
-									<b:if cond='data:title != &quot;&quot;'>
-										<h2>
-											<data:title/>
-										</h2>
-									</b:if>
 									<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
 										<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
 										<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
 									</form>
 								</b:includable>
 							</b:widget>
+							<b:widget id='Profile1' locked='false' title='自己紹介' type='Profile' visible='true'>
+								<b:includable id='main'>
+									<b:if cond='data:authorPhoto.image'>
+										<img expr:alt='data:messages.myPhoto' expr:height='data:authorPhoto.height' expr:src='data:authorPhoto.image' expr:width='data:authorPhoro.width'/>
+										<b:else/>
+										<b:include data='{ iconClass: &quot;avatar-icon&quot; }' name='defaultAvatarIcon'/>
+									</b:if>
+									<b:include name='userProfileInfo'/>
+								</b:includable>
+							</b:widget>
+							<b:widget id='PageList1' locked='false' title='ページ' type='PageList' visible='true'>
+								<b:includable id='main'>
+									<b:include name='widget-title'/>
+									<ul>
+										<b:loop values='data:links' var='link'>
+											<li>
+												<a expr:href='data:link.href'><data:link.title/></a>
+											</li>
+										</b:loop>
+									</ul>
+								</b:includable>
+							</b:widget>
+							<b:widget id='Label1' locked='false' title='Labels' type='Label' visible='true'>
+								<b:includable id='main'>
+									<b:include name='widget-title'/>
+									<b:include name='labelList'/>
+								</b:includable>
+							</b:widget>
+							<b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' visible='true'>
+								<b:includable id='main'>
+									<b:include name='HierarchyArchive'/>
+								</b:includable>
+							</b:widget>
 						</b:section>
 					</aside>
 				</div>
-				<div class='column-main'>
+				<div id='main-wrapper'>
+					<div id='column-main'>
 					<main class='main'>
 						<b:section id='メイン'>
 							<b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' visible='true'>
 								<b:includable id='main'>
 									<b:if cond='data:navMessage'>
-										<data:navMessage/>
+										<div class='message'>
+											<data:navMessage/>
+										</div>
 									</b:if>
 									<b:switch var='data:blog.pageType'>
 										<b:case value='item'/>
 										<b:include name='item_page'/>
 										<b:case value='static_page'/>
-										<b:default/>
+										<b:include name='static_page'/>
+										<b:case value='error_page'/>
+										<b:case value='index'/>
 										<b:if cond='data:blog.searchLabel'>
+											<b:include name='search_page'/>
 											<b:elseif cond='data:blog.searchQuery'/>
+											<b:include name='search_page'/>
 											<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
 											<b:include name='home_page'/>
 											<b:else/>
 											<b:include name='index_page'/>
 										</b:if>
+										<b:default/>
 									</b:switch>
+									<b:include name='simple_pager'/>
 								</b:includable>
 							</b:widget>
 						</b:section>
@@ -501,8 +860,14 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									</div>
 								</b:includable>
 							</b:widget>
+							<b:widget id='ReportAbuse1' locked='true' title='' type='ReportAbuse' visible='true'>
+								<b:includable id='main'>
+									<b:include name='reportAbuse'/>
+								</b:includable>
+							</b:widget>
 						</b:section>
 					</footer>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -512,17 +877,24 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 	const sidebar_wrapper = document.getElementById('sidebar-wrapper');
 	const header_wrapper = document.getElementById('header-wrapper');
 
+	/*中身の大きさを取得*/
 	let header_height = 0;
 	let header_width = 0;
-	for( const elem of header_wrapper.children ){
-		header_height += elem.offsetHeight;
-		header_width += elem.offsetWidth;
-	}
 	let sidebar_width = 0;
 	let sidebar_height = 0;
-	for( const elem of sidebar_wrapper.children ){
-		sidebar_width += elem.offsetWidth;
-		sidebar_height += elem.offsetHeight;
+	function getComponentSize(){
+		header_height = 0;
+		header_width = 0;
+		sidebar_width = 0;
+		sidebar_height = 0;
+		for( const elem of header_wrapper.children ){
+			header_height += elem.offsetHeight;
+			header_width += elem.offsetWidth;
+		}
+		for( const elem of sidebar_wrapper.children ){
+			sidebar_width += elem.offsetWidth;
+			sidebar_height += elem.offsetHeight;
+		}
 	}
 	
 	let isOpen = true;
@@ -531,7 +903,6 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		sidebar_wrapper.children[0].style.left = '0px';
 		isOpen = true;
 	};
-	
 	function closeMenu(){
 		sidebar_wrapper.style.width = '0px';
 		sidebar_wrapper.children[0].style.left = '-' + sidebar_width + 'px';
@@ -540,27 +911,36 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 	
 	let pc_size = true;
 	function windowResize_callback(e){
+		getComponentSize();
 		const windowWidth = document.documentElement.clientWidth;
 		if(pc_size && windowWidth < 1024){//pcサイズだったのに小さくなった時
-			closeMenu();
 			pc_size = false
+			closeMenu();
 		}else if(!pc_size && windowWidth >= 1024){//スマホサイズだったのに大きくなった時
 			pc_size = true;
 			openMenu();
 		}
+		/*メニューの開閉に関係ない値を更新*/
+		header_wrapper.style.height = header_height + 'px';
+		sidebar_wrapper.children[0].style.top = header_height + 'px';
+		document.getElementById('main-wrapper').style.height = 'calc(100vh - ' + header_height + 'px)';	/*メイン部分の高さ指定*/
 	};
 	window.addEventListener('resize', windowResize_callback, false);
 	
+	/*初期化*/
+	getComponentSize();
+	if(document.documentElement.clientWidth < 1024){
+		pc_size = false;
+		closeMenu();
+	}else{
+		pc_size = true;
+		openMenu();
+	}
 	header_wrapper.style.height = header_height + 'px';
 	sidebar_wrapper.children[0].style.top = header_height + 'px';
-	if(document.documentElement.clientWidth < 1024){
-		closeMenu();
-		pc_size = false;
-	}else{
-		openMenu();
-		pc_size = true;
-	}
+	document.getElementById('main-wrapper').style.height = 'calc(100vh - ' + header_height + 'px)';	/*メイン部分の高さ指定*/
 	
+	/*ボタンによるメニュー操作*/
 	function menu_toggle_callback(e){
 		if(isOpen){
 			closeMenu();
@@ -569,7 +949,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		}
 	}
 	document.getElementById('menu-button').addEventListener('click', menu_toggle_callback, false);
-	
+
 })();
 //]]>
 		</script>
