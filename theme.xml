@@ -346,7 +346,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			display: flex;
 			flex-direction: column;
 		}
-		.Profile .avatar-icon {
+		.Profile .author-avatar-icon {
 			background-color: #5ab5b2;
 			width: 50%;
 			aspect-ratio: 1;
@@ -445,8 +445,9 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<b:include name='userProfileInfo'/>
 				</b:includable>
 				<b:includable id='userProfileInfo'>
-					<a class='author-name' expr:href='data:userUrl' rel='author nofollow'>
-						<data:displayname/>
+					<a class='author-name' id='author' itemscope='itemscope' itemprop='author' expr:href='data:userUrl' rel='author nofollow' itemtype='https://schema.org/Person'>
+						<span itemprop='name'><data:displayname/></span>
+						<meta expr:content='data:userUrl' itemprop='url'/>
 					</a>
 					<b:if cond='data:aboutme != &quot;&quot;'>
 						<data:aboutme/>
@@ -510,8 +511,8 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 				<b:includable id='searchLabel_page'>
 					<nav>
 						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
-								--&gt;<a expr:href='data:blog.homepageUrl' itemscope='itemscope' itemprop='item'><span itemprop='name'>root</span></a>&lt;!--
+							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+								--&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
 								--&gt;<meta itemprop='position' content='1'/>&lt;!--
 							--&gt;</li>&lt;!--
 							--&gt;<li class='command-search'>&quot;<data:view.search.label.escaped/>&quot;</li>
@@ -565,8 +566,8 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 				<b:includable id='search_page'>
 					<nav>
 						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
-								--&gt;<a expr:href='data:blog.homepageUrl' itemscope='itemscope' itemprop='item'><span itemprop='name'>root</span></a>&lt;!--
+							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+								--&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
 								--&gt;<meta itemprop='position' content='1'/>&lt;!--
 							--&gt;</li>&lt;!--
 							--&gt;<li class='command-search'>&quot;<data:view.search.query.escaped/>&quot;</li>
@@ -577,7 +578,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 				<b:includable id='home_page'>
 					<nav>
 						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>
-							<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>
+							<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>
 								<span itemprop='name'>root</span>
 								<meta itemprop='position' content='1'/>
 							</li>
@@ -593,23 +594,23 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<b:loop values='data:posts' var='post'>
 						<nav>
 							<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-								--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
-									--&gt;<a expr:href='data:blog.homepageUrl' itemscope='itemscope' itemprop='item'><span itemprop='name'>root</span></a>&lt;!--
+								--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+									--&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
 									--&gt;<meta itemprop='position' content='1'/>&lt;!--
 								--&gt;</li>&lt;!--
-								--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
-									--&gt;<a itemscope='itemscope' expr:href='data:post.labels.first.url' itemprop='item' id='category-crumb'><span itemprop='name'><data:post.labels.first.name/></span></a>&lt;!--
+								--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+									--&gt;<a itemscope='itemscope' expr:href='data:post.labels.first.url' expr:itemid='data:post.labels.first.url' itemprop='item' id='category-crumb' itemtype='http://schema.org/Thing'><span itemprop='name'><data:post.labels.first.name/></span></a>&lt;!--
 									--&gt;<meta itemprop='position' content='2'/>&lt;!--
 								--&gt;</li>&lt;!--
-								--&gt;<li class='current_page_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/Listitem'>&lt;!--
+								--&gt;<li class='current_page_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
 									--&gt;<span itemprop='name'><data:post.title/></span>&lt;!--
 									--&gt;<meta itemprop='position' content='3'/>&lt;!--
 								--&gt;</li>
 							</ol>
 						</nav>
-						<article class='vbox'>
+						<article class='vbox' itemscope='itemscope' itemref='author' itemtype='https://schema.org/BlogPosting'>
 							<header class='article-header'>
-								<div class='article-title'>
+								<div class='article-title' itemprop='headline'>
 									<data:post.title/>
 								</div>
 								<div class='article-time-info'>
@@ -807,6 +808,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		}
 		const label_container = document.getElementById('category-crumb');
 		label_container.href = label.href;
+		label_container.setAttribute('itemid', label.href);
 		label_container.children[0].innerText = label.innerText.slice(2);
 	
 	})();
@@ -852,7 +854,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									<b:if cond='data:authorPhoto.image'>
 										<img expr:alt='data:messages.myPhoto' expr:height='data:authorPhoto.height' expr:src='data:authorPhoto.image' expr:width='data:authorPhoro.width'/>
 										<b:else/>
-										<b:include data='{ iconClass: &quot;avatar-icon&quot; }' name='defaultAvatarIcon'/>
+										<b:include data='{ iconClass: &quot;author-avatar-icon&quot; }' name='defaultAvatarIcon'/>
 									</b:if>
 									<b:include name='userProfileInfo'/>
 								</b:includable>
