@@ -47,6 +47,31 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
     font-display: block;
     src: url("https://biobios.github.io/resource/font/fa-solid-900.woff2") format("woff2"), url("https://biobios.github.io/resource/font/fa-solid-900.ttf") format("truetype");
 }
+
+		/*Common Toggle Style*/
+		.toggle-button-expanded:before {
+			content: "\f0d7";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+		}
+		.toggle-button-collapsed:before {
+			content: "\f0da";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+		}
+		.toggle-dummy:before {
+			content: "\f111";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+			font-size: 0.6em;
+		}
+		.toggle-button-collapsed ~ .toggle-target {
+			display: none;
+		}
+
 		/* Common Style */
 		a {
 			color: rgb(90 181 178);
@@ -62,6 +87,9 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		}
 		.hide {
 			display: none;
+		}
+		.visible {
+			display: block;
 		}
 		/* Layout View */
 		#layout .contents {
@@ -143,11 +171,39 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			flex-shrink: 0;
 			transition: 0.5s;
 		}
-		#column-sidebar .Profile, #column-sidebar .PageList, #column-sidebar .Label {
+		#column-sidebar .Profile, #column-sidebar .PageList, #column-sidebar .Label, #column-sidebar .BlogArchive {
 		    background-color: #2e2e2e;
 			margin: 10px 0;
 			padding: 10px;
 			border-radius: 10px;
+		}
+		/*LabelList style*/
+		.labelList-cloud {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		.labelList-cloud li {
+			display: inline-block;
+			background-color: #202020;
+			margin: 3px;
+			padding: 5px;
+			border-radius: 15px;
+		}
+		/*BlogArchive style*/
+		.hierarchy-archive {
+			list-style-type: none;
+			padding-left: 20px;
+			margin: 5px 0;
+			padding-top: 0;
+			padding-bottom: 0;
+			padding-right: 0;
+		}
+		.post-count:before {
+			content: "(";
+		}
+		.post-count:after {
+			content: ")";
 		}
 		/*Message style*/
 		.message {
@@ -396,31 +452,61 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		<b:defaultmarkups>
 			<b:defaultmarkup type='BlogArchive'>
 				<b:includable id='main'>
+					<b:include name='widget-title'/>
 					<b:include name='HierarchyArchive'/>
 				</b:includable>
 				<b:includable id='HierarchyArchive'>
 					<ol class='hierarchy-archive'>
 						<b:loop values='data:data' var='level1'>
 							<li>
+								<b:if cond='data:level1.data.notEmpty'>
+									<span class='toggle-button-expanded'></span>
+									<b:else/>
+									<span class='toggle-dummy'></span>
+								</b:if>
 								<a expr:href='data:level1.url'>
-									<data:level1.name/>
+									<span>
+										<data:level1.name/>
+									</span>
+									<span class='post-count'>
+										<data:level1.post-count/>
+									</span>
 								</a>
-								<ol class='hierarchy-archive'>
-									<b:loop values='data:level1.data' var='level2'>
-										<li>
-											<a expr:href='data:level2.url'>
-												<data:level2.name/>
-											</a>
-											<ol class='hierarchy-archive'>
-												<b:loop values='data:level2.data' var='level3'>
-													<a expr:href='data:level3.url'>
-														<data:level3.name/>
-													</a>
-												</b:loop>
-											</ol>
-										</li>
-									</b:loop>
-								</ol>
+								<b:if cond='data:level1.data.notEmpty'>
+									<ol class='hierarchy-archive toggle-target'>
+										<b:loop values='data:level1.data' var='level2'>
+											<li>
+												<b:if cond='data:level2.data.notEmpty'>
+													<span class='toggle-button-expanded'></span>
+													<b:else/>
+													<span class='toggle-dummy'></span>
+												</b:if>
+												<a expr:href='data:level2.url'>
+													<span>
+														<data:level2.name/>
+													</span>
+													<span class='post-count'>
+														<data:level2.post-count/>
+													</span>
+												</a>
+												<b:if cond='data:level2.data.notEmpty'>
+													<ol class='hierarchy-archive toggle-target'>
+														<b:loop values='data:level2.data' var='level3'>
+															<a expr:href='data:level3.url'>
+																<span>
+																	<data:level3.name/>
+																</span>
+																<span class='post-count'>
+																	<data:level3.post-count/>
+																</span>
+															</a>
+														</b:loop>
+													</ol>
+												</b:if>
+											</li>
+										</b:loop>
+									</ol>
+								</b:if>
 							</li>
 						</b:loop>
 					</ol>
@@ -435,7 +521,16 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<ul expr:class='&quot;labelList-&quot; + data:display'>
 						<b:loop values='data:labels' var='label'>
 							<li>
-								<a expr:href='data:label.url'><data:label.name/></a>
+								<a expr:href='data:label.url'>
+									<span>
+										<data:label.name/>
+									</span>
+									<b:if cond='data:showFreqNumbers'>
+										<span class='post-count'>
+											<data:label.count/>
+										</span>
+									</b:if>
+								</a>
 							</li>
 						</b:loop>
 					</ul>
@@ -907,6 +1002,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 							</b:widget>
 							<b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' visible='true'>
 								<b:includable id='main'>
+									<b:include name='widget-title'/>
 									<b:include name='HierarchyArchive'/>
 								</b:includable>
 							</b:widget>
@@ -1071,6 +1167,24 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		if(!e?.biobios?.menu_clicked){
 			closeMenu(e);
 		}
+	}
+	
+	/*汎用トグルメニュー*/
+	const toggleButton_className = 'toggle-button';
+	const expanded_postfix = '-expanded';
+	const collapsed_postfix = '-collapsed';
+	
+	function toggleButton_callback(e){
+		if(e.currentTarget.classList.contains(toggleButton_className + expanded_postfix)){
+			e.currentTarget.classList.replace(toggleButton_className + expanded_postfix, toggleButton_className + collapsed_postfix);
+		}else{
+			e.currentTarget.classList.replace(toggleButton_className + collapsed_postfix, toggleButton_className + expanded_postfix);
+		}
+	}
+	
+	const toggleButtons = document.querySelectorAll('[class^="' + toggleButton_className + '"]');
+	for(const elem of toggleButtons){
+		elem.addEventListener('click', toggleButton_callback, false);
 	}
 })();
 //]]>
