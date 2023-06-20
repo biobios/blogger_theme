@@ -228,7 +228,10 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 			content: 'browse '
 		}
 		.command-search:before {
-			content: 'echo search $ALL ';
+			content: 'grep ';
+		}
+		.command-search:after {
+			content: ' -rl /';
 		}
 		
 		/*Index Snippets style*/
@@ -739,7 +742,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 				<b:includable id='search_page'>
 					<nav>
 						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+							--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
 								--&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
 								--&gt;<meta itemprop='position' content='1'/>&lt;!--
 							--&gt;</li>&lt;!--
@@ -755,7 +758,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 								<span itemprop='name'>root</span>
 								<meta itemprop='position' content='1'/>
 							</li>
-							<li class='command'>echo $ALL</li>
+							<li class='command'>ls -R</li>
 						</ol>
 					</nav>
 					<b:include name='snippets_list'/>
