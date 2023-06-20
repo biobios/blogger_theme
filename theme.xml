@@ -120,6 +120,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		}
 		#column-main {
 			max-width: 1024px;
+			margin: auto;
 			flex-grow: 1;
 		}
 		.vbox > .borderline {
