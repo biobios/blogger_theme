@@ -116,6 +116,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 		}
 		#column-main {
 			max-width: 1024px;
+			margin: auto;
 			flex-grow: 1;
 		}
 		.vbox > .borderline {
