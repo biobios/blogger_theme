@@ -242,6 +242,11 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 			margin: 10px 0;
 			border-radius: 5px;
 		}
+		.snippet-title {
+			padding: 10px 0;
+			display: block;
+			font-size: 24px;
+		}
 		.snippet-thumbnail {
 			float: left;
 			margin-right: 10px;
@@ -697,14 +702,14 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 					<b:loop values='data:posts' var='post'>
 						<article class ='vbox snippet'>
 							<header>
-								<a expr:href='data:post.url'>
+								<a expr:href='data:post.url' class='snippet-title'>
 									<data:post.title/>
 								</a>
 							</header>
 							<div>
 								<img class='snippet-thumbnail' expr:src='data:post.thumbnailUrl'/>
 								<div class='snippet-discription'>
-									<b:eval expr='data:post.body snippet { length: 400, linebreaks: false, links: false }'/>
+									<b:eval expr='data:post.body snippet { length: 400, linebreaks: true, links: false }'/>
 									<a expr:href='data:post.url'>本文</a>
 								</div>
 							</div>
