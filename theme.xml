@@ -111,7 +111,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 			margin: 0 auto 0 0;
 		}
 		#main-wrapper {
-			overflow-y: auto;
 			flex-grow: 1;
 		}
 		#column-main {
