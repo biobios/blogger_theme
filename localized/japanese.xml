@@ -677,16 +677,16 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									</section>
 									<footer class='comment-footer'></footer>
 									<aside class='comment-actions'>
-										<a href='javascript:;' class='reply-button'>i18n.reply_comment_button</a>
+										<a href='javascript:;' class='reply-button'>返信</a>
 										<span expr:class='"hide " + data:comment.adminClass'>
-											<a expr:href='data:comment.deleteUrl' class='comment-delete-button'>i18n.delete_comment_button</a>
+											<a expr:href='data:comment.deleteUrl' class='comment-delete-button'>削除</a>
 										</span>
 									</aside>
 								</article>
 							</div>
 						</b:loop>
 					</div>
-					<div id='post_comment_button'>i18n.post_comment_button</div>
+					<div id='post_comment_button'>コメントを投稿</div>
 					<script type='text/javascript'>
 
 (function (){
@@ -701,7 +701,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 	const expanded_postfix = '-expanded';
 	const collapsed_postfix = '-collapsed';
 	const default_postfix = expanded_postfix;
-	const reply_toggleText = 'i18n.reply_comment_button';
+	const reply_toggleText = '返信';
 	
 	const temp_cmt_strage = Array();
 	while(comments_wrapper.children.length != 0){
@@ -824,7 +824,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			<div id='header-wrapper'>
 				<header id='page-header' class='hbox'>
 					<div id='menu-button'></div>
-					<b:section id='i18n.section_id_header'>
+					<b:section id='ヘッダー'>
 						<b:widget id='Header1' locked='true' title='ヘッダ' type='Header' visible='true'>
 							<b:includable id='main' var='this'>
 								<span class='header-title'>
@@ -840,7 +840,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			<div class='center-columns hbox'>
 				<div id='sidebar-wrapper'>
 					<aside id='column-sidebar' class='column-sidebar'>
-						<b:section id='i18n.section_id_sidebar'>
+						<b:section id='サイドバー'>
 							<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
 								<b:includable id='main'>
 									<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
@@ -849,7 +849,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									</form>
 								</b:includable>
 							</b:widget>
-							<b:widget id='Profile1' locked='false' title='i18n.widget_title_introduction' type='Profile' visible='true'>
+							<b:widget id='Profile1' locked='false' title='自己紹介' type='Profile' visible='true'>
 								<b:includable id='main'>
 									<b:if cond='data:authorPhoto.image'>
 										<img expr:alt='data:messages.myPhoto' expr:height='data:authorPhoto.height' expr:src='data:authorPhoto.image' expr:width='data:authorPhoro.width'/>
@@ -859,7 +859,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 									<b:include name='userProfileInfo'/>
 								</b:includable>
 							</b:widget>
-							<b:widget id='PageList1' locked='false' title='i18n.widget_title_pages' type='PageList' visible='true'>
+							<b:widget id='PageList1' locked='false' title='ページ' type='PageList' visible='true'>
 								<b:includable id='main'>
 									<b:include name='widget-title'/>
 									<ul>
@@ -888,8 +888,8 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 				<div id='main-wrapper'>
 					<div id='column-main'>
 					<main class='main'>
-						<b:section id='i18n.section_id_main'>
-							<b:widget id='Blog1' locked='true' title='i18n.widget_title_blog_posts' type='Blog' visible='true'>
+						<b:section id='メイン'>
+							<b:widget id='Blog1' locked='true' title='ブログ記事' type='Blog' visible='true'>
 								<b:includable id='main'>
 									<b:if cond='data:navMessage'>
 										<div class='message'>
@@ -922,8 +922,8 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 						</b:section>
 					</main>
 					<footer>
-						<b:section id='i18n.section_id_footer'>
-							<b:widget id='Attribution1' locked='true' title='i18n.widget_title_attribution' type='Attribution'>
+						<b:section id='フッター'>
+							<b:widget id='Attribution1' locked='true' title='帰属' type='Attribution'>
 								<b:includable id='main'>
 									<div class='attribution-box'>
 										<b:if cond='data:attribution != &quot;&quot;'>
