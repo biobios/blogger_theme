@@ -11,19 +11,54 @@
 		<title>
 			<data:blog.title/>
 		</title>
+		<link expr:href='data:view.url.canonical' rel='canonical'/>
 		<link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
-		<script src="https://kit.fontawesome.com/cbe35237e7.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://biobios.github.io/resource/css/my_style_for_blogger.css"/>
 		<b:skin>
 			<![CDATA[
-			/**
- * Minified by jsDelivr using clean-css v4.1.9.
- * Original file: /npm/modern-normalize@0.4.0/modern-normalize.css
- * 
- * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
- */
-/*! modern-normalize | MIT License | https://github.com/sindresorhus/modern-normalize */
-html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-size:4;tab-size:4}html{line-height:1.15}body{margin:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'}h1{font-size:2em;margin:.67em 0}hr{height:0}abbr[title]{text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:SFMono-Regular,Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{padding:0}progress{vertical-align:baseline}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}
-/*# sourceMappingURL=/sm/b8427ae79f001842dec31421d2331d1bf01b09f0794a6b49d15ae566d4d6b5b7.map */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("https://biobios.github.io/resource/font/fa-regular-400.woff2") format("woff2"), url("https://biobios.github.io/resource/font/fa-regular-400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("https://biobios.github.io/resource/font/fa-solid-900.woff2") format("woff2"), url("https://biobios.github.io/resource/font/fa-solid-900.ttf") format("truetype");
+}
+
+		/*Common Toggle Style*/
+		.toggle-button-expanded:before {
+			content: "\f0d7";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+		}
+		.toggle-button-collapsed:before {
+			content: "\f0da";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+		}
+		.toggle-dummy:before {
+			content: "\f111";
+			font-weight: 900;
+			font-family: 'Font Awesome 6 Free';
+			margin-right: 3px;
+			font-size: 0.6em;
+		}
+		.toggle-button-collapsed ~ .toggle-target {
+			display: none;
+		}
+
 		/* Common Style */
 		a {
 			color: rgb(90 181 178);
@@ -37,8 +72,11 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			display: flex;
 			flex-direction: column;
 		}
-		.hide {
+		.hidden {
 			display: none;
+		}
+		.visible {
+			display: block;
 		}
 		/* Layout View */
 		#layout .contents {
@@ -64,11 +102,11 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			margin: 0 auto 0 0;
 		}
 		#main-wrapper {
-			overflow-y: auto;
 			flex-grow: 1;
 		}
 		#column-main {
 			max-width: 1024px;
+			margin: auto;
 			flex-grow: 1;
 		}
 		.vbox > .borderline {
@@ -120,11 +158,39 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			flex-shrink: 0;
 			transition: 0.5s;
 		}
-		#column-sidebar .Profile, #column-sidebar .PageList, #column-sidebar .Label {
+		#column-sidebar .Profile, #column-sidebar .PageList, #column-sidebar .Label, #column-sidebar .BlogArchive {
 		    background-color: #2e2e2e;
 			margin: 10px 0;
 			padding: 10px;
 			border-radius: 10px;
+		}
+		/*LabelList style*/
+		.labelList-cloud {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		.labelList-cloud li {
+			display: inline-block;
+			background-color: #202020;
+			margin: 3px;
+			padding: 5px;
+			border-radius: 15px;
+		}
+		/*BlogArchive style*/
+		.hierarchy-archive {
+			list-style-type: none;
+			padding-left: 20px;
+			margin: 5px 0;
+			padding-top: 0;
+			padding-bottom: 0;
+			padding-right: 0;
+		}
+		.post-count:before {
+			content: "(";
+		}
+		.post-count:after {
+			content: ")";
 		}
 		/*Message style*/
 		.message {
@@ -152,7 +218,10 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			content: 'browse '
 		}
 		.command-search:before {
-			content: 'echo search $ALL ';
+			content: 'grep ';
+		}
+		.command-search:after {
+			content: ' -rl /';
 		}
 		
 		/*Index Snippets style*/
@@ -162,6 +231,15 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			padding: 10px;
 			margin: 10px 0;
 			border-radius: 5px;
+		}
+		.snippet-title {
+			padding: 10px 0;
+			display: block;
+			font-size: 24px;
+		}
+		.snippet-thumbnail {
+			float: left;
+			margin-right: 10px;
 		}
 		/*Article style*/
 		.article-header {
@@ -367,37 +445,123 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			color: #606060;
 			font-size: 0.8em;
 		}
+		/*PopularPosts widget style*/
+		.popular-posts-title {
+			background-color: #303030;
+			margin: 10px 0;
+			text-align: center;
+			padding: 10px;
+			font-size: 1.4em;
+			border-radius: 5px;
+		}
 		
 		]]>
 		</b:skin>
 		<b:defaultmarkups>
+			<b:defaultmarkup type='Header'>
+				<b:includable id='main' var='this'>
+					<span class='header-title'>
+						<b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='data:blog.homepageUrl' name='a'>
+							<data:title/>
+						</b:tag>
+					</span>
+				</b:includable>
+			</b:defaultmarkup>
+			<b:defaultmarkup type='PopularPosts'>
+				<b:includable id='main'>
+					<b:include name='widgetTitle'/>
+					<b:include name='snippetsList'/>
+				</b:includable>
+				<b:includable id='widgetTitle'>
+					<b:if cond='data:title != &quot;&quot;'>
+						<div class='popular-posts-title'>
+							<data:title/>
+						</div>
+					</b:if>
+				</b:includable>
+				<b:includable id='snippetsList'>
+					<b:loop values='data:posts' var='post'>
+						<article class ='vbox snippet'>
+							<header>
+								<a expr:href='data:post.url'>
+									<data:post.title/>
+								</a>
+							</header>
+							<div>
+								<b:if cond='data:post.featuredImage'>
+									<b:if cond='data:post.featuredImage.isResizable'>
+										<img class='snippet-thumbnail' expr:src='resizeImage(data:post.featuredImage,128,"1:1")'/>
+										<b:else/>
+										<img class='snippet-thumbnail' expr:src='data:post.featuredImage'/>
+									</b:if>
+								</b:if>
+								<div class='snippet-discription'>
+									<b:eval expr='data:post.body snippet { length: 200, linebreaks: false, links: false }'/>
+									<a expr:href='data:post.url'>本文</a>
+								</div>
+							</div>
+							<footer></footer>
+						</article>
+					</b:loop>
+				</b:includable>
+			</b:defaultmarkup>
 			<b:defaultmarkup type='BlogArchive'>
 				<b:includable id='main'>
+					<b:include name='widget-title'/>
 					<b:include name='HierarchyArchive'/>
 				</b:includable>
 				<b:includable id='HierarchyArchive'>
 					<ol class='hierarchy-archive'>
 						<b:loop values='data:data' var='level1'>
 							<li>
+								<b:if cond='data:level1.data.notEmpty'>
+									<span class='toggle-button-expanded'></span>
+									<b:else/>
+									<span class='toggle-dummy'></span>
+								</b:if>
 								<a expr:href='data:level1.url'>
-									<data:level1.name/>
+									<span>
+										<data:level1.name/>
+									</span>
+									<span class='post-count'>
+										<data:level1.post-count/>
+									</span>
 								</a>
-								<ol class='hierarchy-archive'>
-									<b:loop values='data:level1.data' var='level2'>
-										<li>
-											<a expr:href='data:level2.url'>
-												<data:level2.name/>
-											</a>
-											<ol class='hierarchy-archive'>
-												<b:loop values='data:level2.data' var='level3'>
-													<a expr:href='data:level3.url'>
-														<data:level3.name/>
-													</a>
-												</b:loop>
-											</ol>
-										</li>
-									</b:loop>
-								</ol>
+								<b:if cond='data:level1.data.notEmpty'>
+									<ol class='hierarchy-archive toggle-target'>
+										<b:loop values='data:level1.data' var='level2'>
+											<li>
+												<b:if cond='data:level2.data.notEmpty'>
+													<span class='toggle-button-expanded'></span>
+													<b:else/>
+													<span class='toggle-dummy'></span>
+												</b:if>
+												<a expr:href='data:level2.url'>
+													<span>
+														<data:level2.name/>
+													</span>
+													<span class='post-count'>
+														<data:level2.post-count/>
+													</span>
+												</a>
+												<b:if cond='data:level2.data.notEmpty'>
+													<ol class='hierarchy-archive toggle-target'>
+														<b:loop values='data:level2.data' var='level3'>
+															<a expr:href='data:level3.url'>
+																<span>
+																	<data:level3.name/>
+																</span>
+																<span class='post-count'>
+																	<data:level3.post-count/>
+																</span>
+															</a>
+														</b:loop>
+													</ol>
+												</b:if>
+											</li>
+										</b:loop>
+									</ol>
+								</b:if>
 							</li>
 						</b:loop>
 					</ol>
@@ -412,7 +576,16 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<ul expr:class='&quot;labelList-&quot; + data:display'>
 						<b:loop values='data:labels' var='label'>
 							<li>
-								<a expr:href='data:label.url'><data:label.name/></a>
+								<a expr:href='data:label.url'>
+									<span>
+										<data:label.name/>
+									</span>
+									<b:if cond='data:showFreqNumbers'>
+										<span class='post-count'>
+											<data:label.count/>
+										</span>
+									</b:if>
+								</a>
 							</li>
 						</b:loop>
 					</ul>
@@ -456,11 +629,6 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 			</b:defaultmarkup>
 			<b:defaultmarkup type='BlogSearch'>
 				<b:includable id='main'>
-					<b:if cond='data:title != &quot;&quot;'>
-						<h2>
-							<data:title/>
-						</h2>
-					</b:if>
 					<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
 						<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
 						<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
@@ -524,13 +692,16 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<b:loop values='data:posts' var='post'>
 						<article class ='vbox snippet'>
 							<header>
-								<a expr:href='data:post.url'>
+								<a expr:href='data:post.url' class='snippet-title'>
 									<data:post.title/>
 								</a>
 							</header>
 							<div>
-								<data:post.snippets.short/>
-								<a expr:href='data:post.url'>detail</a>
+								<img class='snippet-thumbnail' expr:src='data:post.thumbnailUrl'/>
+								<div class='snippet-discription'>
+									<b:eval expr='data:post.body snippet { length: 400, linebreaks: true, links: false }'/>
+									<a expr:href='data:post.url'>本文</a>
+								</div>
 							</div>
 							<footer></footer>
 						</article>
@@ -566,7 +737,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 				<b:includable id='search_page'>
 					<nav>
 						<ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-							--&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+							--&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
 								--&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
 								--&gt;<meta itemprop='position' content='1'/>&lt;!--
 							--&gt;</li>&lt;!--
@@ -582,7 +753,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 								<span itemprop='name'>root</span>
 								<meta itemprop='position' content='1'/>
 							</li>
-							<li class='command'>echo $ALL</li>
+							<li class='command'>ls -R</li>
 						</ol>
 					</nav>
 					<b:include name='snippets_list'/>
@@ -801,15 +972,16 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		const labels = document.getElementsByClassName('article-label');
 		let label = null;
 		for( const l of labels ){
-			if(l.innerText.includes(category_chara)){
+			if(l.innerText.startsWith(category_chara)){
 				label = l;
 				break;
 			}
 		}
+		if(!label) return;
 		const label_container = document.getElementById('category-crumb');
 		label_container.href = label.href;
 		label_container.setAttribute('itemid', label.href);
-		label_container.children[0].innerText = label.innerText.slice(2);
+		label_container.children[0].innerText = label.innerText.slice(category_chara.length);
 	
 	})();
 //]]>
@@ -825,15 +997,7 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 				<header id='page-header' class='hbox'>
 					<div id='menu-button'></div>
 					<b:section id='i18n.section_id_header'>
-						<b:widget id='Header1' locked='true' title='ヘッダ' type='Header' visible='true'>
-							<b:includable id='main' var='this'>
-								<span class='header-title'>
-									<b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='data:blog.homepageUrl' name='a'>
-										<data:title/>
-									</b:tag>
-								</span>
-							</b:includable>
-						</b:widget>
+						<b:widget id='Header1' locked='true' title='ブログタイトル' type='Header'></b:widget>
 					</b:section>
 				</header>
 			</div>
@@ -842,104 +1006,42 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 					<aside id='column-sidebar' class='column-sidebar'>
 						<b:section id='i18n.section_id_sidebar'>
 							<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
-								<b:includable id='main'>
-									<form expr:action='data:blog.searchUrl' class='hbox search-wrapper'>
-										<input autocomplete='off' class='search-textbox' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q' size='10' title='search' type='text'/>
-										<button type='submit' class='search-button' expr:value='data:messages.search' title='search'></button>
-									</form>
-								</b:includable>
 							</b:widget>
 							<b:widget id='Profile1' locked='false' title='i18n.widget_title_introduction' type='Profile' visible='true'>
-								<b:includable id='main'>
-									<b:if cond='data:authorPhoto.image'>
-										<img expr:alt='data:messages.myPhoto' expr:height='data:authorPhoto.height' expr:src='data:authorPhoto.image' expr:width='data:authorPhoro.width'/>
-										<b:else/>
-										<b:include data='{ iconClass: &quot;author-avatar-icon&quot; }' name='defaultAvatarIcon'/>
-									</b:if>
-									<b:include name='userProfileInfo'/>
-								</b:includable>
 							</b:widget>
 							<b:widget id='PageList1' locked='false' title='i18n.widget_title_pages' type='PageList' visible='true'>
-								<b:includable id='main'>
-									<b:include name='widget-title'/>
-									<ul>
-										<b:loop values='data:links' var='link'>
-											<li>
-												<a expr:href='data:link.href'><data:link.title/></a>
-											</li>
-										</b:loop>
-									</ul>
-								</b:includable>
 							</b:widget>
 							<b:widget id='Label1' locked='false' title='Labels' type='Label' visible='true'>
-								<b:includable id='main'>
-									<b:include name='widget-title'/>
-									<b:include name='labelList'/>
-								</b:includable>
 							</b:widget>
 							<b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' visible='true'>
-								<b:includable id='main'>
-									<b:include name='HierarchyArchive'/>
-								</b:includable>
 							</b:widget>
 						</b:section>
 					</aside>
 				</div>
 				<div id='main-wrapper'>
-					<div id='column-main'>
-					<main class='main'>
-						<b:section id='i18n.section_id_main'>
-							<b:widget id='Blog1' locked='true' title='i18n.widget_title_blog_posts' type='Blog' visible='true'>
-								<b:includable id='main'>
-									<b:if cond='data:navMessage'>
-										<div class='message'>
-											<data:navMessage/>
-										</div>
-									</b:if>
-									<b:switch var='data:blog.pageType'>
-										<b:case value='item'/>
-										<b:include name='item_page'/>
-										<b:case value='static_page'/>
-										<b:include name='static_page'/>
-										<b:case value='error_page'/>
-										<b:case value='archive'/>
-										<b:include name='archive_page'/>
-										<b:case value='index'/>
-										<b:if cond='data:blog.searchLabel'>
-											<b:include name='searchLabel_page'/>
-											<b:elseif cond='data:blog.searchQuery'/>
-											<b:include name='search_page'/>
-											<b:elseif cond='data:blog.url == data:blog.homepageUrl'/>
-											<b:include name='home_page'/>
-											<b:else/>
-											<b:include name='index_page'/>
-										</b:if>
-										<b:default/>
-									</b:switch>
-									<b:include name='simple_pager'/>
-								</b:includable>
-							</b:widget>
-						</b:section>
-					</main>
-					<footer>
-						<b:section id='i18n.section_id_footer'>
-							<b:widget id='Attribution1' locked='true' title='i18n.widget_title_attribution' type='Attribution'>
-								<b:includable id='main'>
-									<div class='attribution-box'>
-										<b:if cond='data:attribution != &quot;&quot;'>
-											<data:attribution/>
-										</b:if>
-									</div>
-								</b:includable>
-							</b:widget>
-							<b:widget id='ReportAbuse1' locked='true' title='' type='ReportAbuse' visible='true'>
-								<b:includable id='main'>
-									<b:include name='reportAbuse'/>
-								</b:includable>
-							</b:widget>
-						</b:section>
-					</footer>
-				</div>
+					<div id='column-main' class='vbox'>
+						<main class='main'>
+							<b:section id='i18n.section_id_main' showaddelement='false'>
+								<b:widget id='Blog1' locked='true' title='i18n.widget_title_blog_posts' type='Blog' visible='true'>
+								</b:widget>
+							</b:section>
+						</main>
+						<div class='borderline'></div>
+						<aside class='under-main'>
+							<b:section id='メイン下'>
+								<b:widget id='PopularPosts1' locked='false' title='人気記事' type='PopularPosts' visible='true'>
+								</b:widget>
+							</b:section>
+						</aside>
+						<footer>
+							<b:section id='i18n.section_id_footer'>
+								<b:widget id='Attribution1' locked='true' title='i18n.widget_title_attribution' type='Attribution'>
+								</b:widget>
+								<b:widget id='ReportAbuse1' locked='true' title='' type='ReportAbuse' visible='true'>
+								</b:widget>
+							</b:section>
+						</footer>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -970,12 +1072,24 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 	}
 	
 	let isOpen = true;
-	function openMenu(){
-		if(pc_size) sidebar_wrapper.style.width = sidebar_width + 'px';
+	function openMenu(e){
+		if(pc_size){//pcサイズで開いたとき
+			sidebar_wrapper.children[0].removeEventListener('click', menu_click_callback, false);
+			document.removeEventListener('click', click_callback, false);
+			sidebar_wrapper.style.width = sidebar_width + 'px';
+		}else{//スマホサイズで開いたとき
+			sidebar_wrapper.children[0].addEventListener('click', menu_click_callback, false);
+			document.addEventListener('click', click_callback, false);
+			e.biobios = e.biobios ?? {};
+			e.biobios.menu_clicked = true;
+		}
 		sidebar_wrapper.children[0].style.left = '0px';
 		isOpen = true;
 	};
-	function closeMenu(){
+	function closeMenu(e){
+		sidebar_wrapper.children[0].removeEventListener('click', menu_click_callback, false);
+		document.removeEventListener('click', click_callback, false);
+		
 		sidebar_wrapper.style.width = '0px';
 		sidebar_wrapper.children[0].style.left = '-' + sidebar_width + 'px';
 		isOpen = false;
@@ -987,10 +1101,10 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 		const windowWidth = document.documentElement.clientWidth;
 		if(pc_size && windowWidth < 1024){//pcサイズだったのに小さくなった時
 			pc_size = false
-			closeMenu();
+			closeMenu(e);
 		}else if(!pc_size && windowWidth >= 1024){//スマホサイズだったのに大きくなった時
 			pc_size = true;
-			openMenu();
+			openMenu(e);
 		}
 		/*メニューの開閉に関係ない値を更新*/
 		header_wrapper.style.height = header_height + 'px';
@@ -1003,10 +1117,10 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 	getComponentSize();
 	if(document.documentElement.clientWidth < 1024){
 		pc_size = false;
-		closeMenu();
+		closeMenu({});
 	}else{
 		pc_size = true;
-		openMenu();
+		openMenu({});
 	}
 	header_wrapper.style.height = header_height + 'px';
 	sidebar_wrapper.children[0].style.top = header_height + 'px';
@@ -1015,13 +1129,41 @@ html{box-sizing:border-box}*,::after,::before{box-sizing:inherit}:root{-moz-tab-
 	/*ボタンによるメニュー操作*/
 	function menu_toggle_callback(e){
 		if(isOpen){
-			closeMenu();
+			closeMenu(e);
 		}else{
-			openMenu();
+			openMenu(e);
 		}
 	}
 	document.getElementById('menu-button').addEventListener('click', menu_toggle_callback, false);
-
+	
+	/*メニュー部分以外をクリックしたときにメニューを閉じる*/
+	function menu_click_callback(e){
+		e.biobios = e.biobios ?? {};
+		e.biobios.menu_clicked = true;
+	}
+	function click_callback(e){
+		if(!e?.biobios?.menu_clicked){
+			closeMenu(e);
+		}
+	}
+	
+	/*汎用トグルメニュー*/
+	const toggleButton_className = 'toggle-button';
+	const expanded_postfix = '-expanded';
+	const collapsed_postfix = '-collapsed';
+	
+	function toggleButton_callback(e){
+		if(e.currentTarget.classList.contains(toggleButton_className + expanded_postfix)){
+			e.currentTarget.classList.replace(toggleButton_className + expanded_postfix, toggleButton_className + collapsed_postfix);
+		}else{
+			e.currentTarget.classList.replace(toggleButton_className + collapsed_postfix, toggleButton_className + expanded_postfix);
+		}
+	}
+	
+	const toggleButtons = document.querySelectorAll('[class^="' + toggleButton_className + '"]');
+	for(const elem of toggleButtons){
+		elem.addEventListener('click', toggleButton_callback, false);
+	}
 })();
 //]]>
 		</script>
