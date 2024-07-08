@@ -495,10 +495,9 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 										<img class='snippet-thumbnail' expr:src='data:post.featuredImage'/>
 									</b:if>
 								</b:if>
-								<div class='snippet-discription'>
+								<a expr:href='data:post.url'><div class='snippet-discription'>
 									<b:eval expr='data:post.body snippet { length: 200, linebreaks: false, links: false }'/>
-									<a expr:href='data:post.url'>本文</a>
-								</div>
+								</div></a>
 							</div>
 							<footer></footer>
 						</article>
@@ -698,10 +697,9 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 							</header>
 							<div>
 								<img class='snippet-thumbnail' expr:src='data:post.thumbnailUrl'/>
-								<div class='snippet-discription'>
+								<a expr:href='data:post.url'><div class='snippet-discription'>
 									<b:eval expr='data:post.body snippet { length: 400, linebreaks: true, links: false }'/>
-									<a expr:href='data:post.url'>本文</a>
-								</div>
+								</div></a>
 							</div>
 							<footer></footer>
 						</article>
@@ -997,7 +995,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 				<header id='page-header' class='hbox'>
 					<div id='menu-button'></div>
 					<b:section id='i18n.section_id_header'>
-						<b:widget id='Header1' locked='true' title='ブログタイトル' type='Header'></b:widget>
+						<b:widget id='Header1' locked='true' title='i18n.widget_title_header' type='Header'></b:widget>
 					</b:section>
 				</header>
 			</div>
@@ -1028,8 +1026,8 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 						</main>
 						<div class='borderline'></div>
 						<aside class='under-main'>
-							<b:section id='メイン下'>
-								<b:widget id='PopularPosts1' locked='false' title='人気記事' type='PopularPosts' visible='true'>
+							<b:section id='i18n.section_id_below_main'>
+								<b:widget id='PopularPosts1' locked='false' title='i18n.widget_title_popular_posts' type='PopularPosts' visible='true'>
 								</b:widget>
 							</b:section>
 						</aside>
