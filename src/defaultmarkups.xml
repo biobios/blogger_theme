@@ -219,8 +219,8 @@
         <b:includable id='searchLabel_page'>
             <nav>
                 <ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-                    --&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
-                        --&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
+                    --&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+                        --&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>/</span></a>&lt;!--
                         --&gt;<meta itemprop='position' content='1'/>&lt;!--
                     --&gt;</li>&lt;!--
                     --&gt;<li class='command-search'>&quot;<data:view.search.label.escaped/>&quot;</li>
@@ -277,7 +277,7 @@
             <nav>
                 <ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
                     --&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
-                        --&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
+                        --&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>/</span></a>&lt;!--
                         --&gt;<meta itemprop='position' content='1'/>&lt;!--
                     --&gt;</li>&lt;!--
                     --&gt;<li class='command-search'>&quot;<data:view.search.query.escaped/>&quot;</li>
@@ -288,11 +288,7 @@
         <b:includable id='home_page'>
             <nav>
                 <ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>
-                    <li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>
-                        <span itemprop='name'>root</span>
-                        <meta itemprop='position' content='1'/>
-                    </li>
-                    <li class='command'>ls -R</li>
+                    <li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'><span itemprop='name'>/</span><meta itemprop='position' content='1'/></li><li class='command'>ls -R /</li>
                 </ol>
             </nav>
             <b:include name='snippets_list'/>
@@ -304,8 +300,8 @@
             <b:loop values='data:posts' var='post'>
                 <nav>
                     <ol class='breadcrumb' itemscope='itemscope' itemtype='http://schema.org/BreadcrumbList'>&lt;!--
-                        --&gt;<li itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
-                            --&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>root</span></a>&lt;!--
+                        --&gt;<li class='root_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
+                            --&gt;<a expr:href='data:blog.homepageUrl' expr:itemid='data:blog.homepageUrl' itemscope='itemscope' itemprop='item' itemtype='http://schema.org/Thing'><span itemprop='name'>/</span></a>&lt;!--
                             --&gt;<meta itemprop='position' content='1'/>&lt;!--
                         --&gt;</li>&lt;!--
                         --&gt;<li class='current_dir_crumb' itemprop='itemListElement' itemscope='itemscope' itemtype='http://schema.org/ListItem'>&lt;!--
