@@ -1,0 +1,702 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+main {
+    display: block
+}
+
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible
+}
+
+pre {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+a {
+    background-color: transparent
+}
+
+abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted
+}
+
+b,
+strong {
+    font-weight: bolder
+}
+
+code,
+kbd,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+small {
+    font-size: 80%
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sub {
+    bottom: -.25em
+}
+
+sup {
+    top: -.5em
+}
+
+img {
+    border-style: none
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0
+}
+
+button,
+input {
+    overflow: visible
+}
+
+button,
+select {
+    text-transform: none
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText
+}
+
+fieldset {
+    padding: .35em .75em .625em
+}
+
+legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal
+}
+
+progress {
+    vertical-align: baseline
+}
+
+textarea {
+    overflow: auto
+}
+
+[type="checkbox"],
+[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto
+}
+
+[type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px
+}
+
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit
+}
+
+details {
+    display: block
+}
+
+summary {
+    display: list-item
+}
+
+template {
+    display: none
+}
+
+[hidden] {
+    display: none
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("https://biobios.github.io/resource/font/fa-regular-400.woff2") format("woff2"), url("https://biobios.github.io/resource/font/fa-regular-400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("https://biobios.github.io/resource/font/fa-solid-900.woff2") format("woff2"), url("https://biobios.github.io/resource/font/fa-solid-900.ttf") format("truetype");
+}
+
+/*Common Toggle Style*/
+.toggle-button-expanded:before {
+    content: "\f0d7";
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+    margin-right: 3px;
+}
+
+.toggle-button-collapsed:before {
+    content: "\f0da";
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+    margin-right: 3px;
+}
+
+.toggle-dummy:before {
+    content: "\f111";
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+    margin-right: 3px;
+    font-size: 0.6em;
+}
+
+.toggle-button-collapsed~.toggle-target {
+    display: none;
+}
+
+/* Common Style */
+a {
+    color: rgb(90 181 178);
+    text-decoration: none;
+}
+
+.hbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.vbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* Layout View */
+#layout .contents {
+    display: block;
+}
+
+#layout #page-header {
+    position: static;
+}
+
+#layout .column-sidebar {
+    position: static;
+}
+
+/* Layout Style */
+body {
+    background-color: #464646;
+    color: #cecece;
+    margin: 0;
+}
+
+.section {
+    margin: 15px 15px;
+}
+
+.contents {
+    margin: 0 auto 0 0;
+}
+
+#main-wrapper {
+    flex-grow: 1;
+}
+
+#column-main {
+    max-width: 1024px;
+    margin: auto;
+    flex-grow: 1;
+}
+
+.vbox>.borderline {
+    margin: 0 15px;
+    border-top: 1px solid #4e4e4e;
+}
+
+.hbox>.borderline {
+    margin: 15px 0;
+    border-left: 1px solid #4e4e4e;
+}
+
+/*Menu Button*/
+#menu-button {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: calc(50% + 2.5px);
+}
+
+#menu-button:hover {
+    background-color: #2e2e2e;
+}
+
+#menu-button:before {
+    content: '\f0c9';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 2em;
+    display: block;
+    aspect-ratio: 1;
+    width: 40px;
+    text-align: center;
+}
+
+#page-header {
+    background-color: #1c1c1c;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+}
+
+/*Sidebar style*/
+.column-sidebar {
+    background-color: #414141;
+    position: fixed;
+    overflow-y: auto;
+    bottom: 0;
+    width: 300px;
+    transition: 0.5s;
+}
+
+#sidebar-wrapper {
+    flex-shrink: 0;
+    transition: 0.5s;
+}
+
+#column-sidebar .Profile,
+#column-sidebar .PageList,
+#column-sidebar .Label,
+#column-sidebar .BlogArchive {
+    background-color: #2e2e2e;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/*LabelList style*/
+.labelList-cloud {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.labelList-cloud li {
+    display: inline-block;
+    background-color: #202020;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+/*BlogArchive style*/
+.hierarchy-archive {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 5px 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+}
+
+.post-count:before {
+    content: "(";
+}
+
+.post-count:after {
+    content: ")";
+}
+
+/*Message style*/
+.message {
+    background-color: #3a3a3a;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* BreadcrumbList Style */
+.breadcrumb {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb>li {
+    display: inline;
+}
+
+.breadcrumb>li:not([class]):after {
+    content: '/';
+}
+
+.breadcrumb>.current_dir_crumb:after {
+    content: '>'
+}
+
+.breadcrumb>.current_page_crumb:before {
+    content: 'browse '
+}
+
+.command-search:before {
+    content: 'grep ';
+}
+
+.command-search:after {
+    content: ' -rl /';
+}
+
+/*Index Snippets style*/
+.snippet {
+    background-color: #303030;
+    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.snippet-title {
+    padding: 10px 0;
+    display: block;
+    font-size: 24px;
+}
+
+.snippet-thumbnail {
+    float: left;
+    margin-right: 10px;
+}
+
+/*Article style*/
+.article-header {
+    background-color: #b0b0b0;
+    color: #303030;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.article-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.create-time:after {
+    content: '作成';
+}
+
+.update-time:after {
+    content: '更新';
+}
+
+/*Article inner style*/
+.article-body {
+    background-color: #2e2e2e;
+    padding: 15px;
+    margin: 10px 0;
+    text-align: justify;
+    border-radius: 5px;
+}
+
+.article-image-wrapper {
+    display: block;
+}
+
+.article-image {
+    width: 100%;
+}
+
+/*Labels style*/
+.labels {
+    list-style-type: none;
+    margin: 5px;
+    padding: 0;
+}
+
+.labels:before {
+    content: 'Labels:';
+}
+
+.label {
+    display: inline-block;
+    background-color: #2e2e2e;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+/* Comment Section Style */
+.comment-holder {
+    margin-left: 15px;
+}
+
+[class^="reply-toggle"] {
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.reply-toggle-collapsed~* {
+    display: none;
+}
+
+.reply-button:before {
+    content: '\f27a';
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+}
+
+.reply-toggle-expanded:before {
+    content: "\f0d7";
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+    margin-right: 3px;
+}
+
+.reply-toggle-collapsed:before {
+    content: "\f0da";
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+    margin-right: 3px;
+}
+
+.comment-delete-button:before {
+    content: "\f1f8";
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+}
+
+.blogger-comment-from-post {
+    width: 100%;
+    height: 200px;
+}
+
+#comments-wrapper>.comment-holder {
+    background-color: #585858;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comment-article {
+    background-color: #727272;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 5px 0;
+}
+
+#post_comment_button {
+    text-align: center;
+    background-color: #2a2a2a;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-radius: 7px;
+}
+
+.comment-form {
+    border: none;
+    height: 200px;
+}
+
+/*Pager Style*/
+[class^="prev-pager"] {
+    flex-grow: 1;
+    text-align: start;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+[class^="next-pager"] {
+    flex-grow: 1;
+    text-align: end;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+[class^="prev-pager"]:before {
+    content: '\f053';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+[class^="next-pager"]:before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.prev-pager-active {
+    background-color: #282828;
+}
+
+.next-pager-active {
+    background-color: #282828;
+}
+
+.prev-pager-nonactive {
+    background-color: #3a3a3a;
+}
+
+.next-pager-nonactive {
+    background-color: #3a3a3a;
+}
+
+/*Header Style*/
+.header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*SearchBox Style*/
+.search-wrapper,
+.search-textbox,
+.search-button {
+    color: #ffffff;
+    background-color: #2e2e2e;
+    border: 0 none transparent;
+    outline: transparent none 0;
+}
+
+.search-textbox {
+    flex-grow: 1;
+    padding: 5px 0;
+}
+
+.search-button:before {
+    content: '\f002';
+    font-weight: 900;
+    font-family: 'Font Awesome 6 Free';
+}
+
+.search-textbox:hover,
+.search-button:hover {
+    background-color: #202020;
+}
+
+/*Attribution style*/
+.Attribution .blogger a {
+    display: flex;
+    justify-content: center;
+}
+
+.Attribution svg {
+    height: 24px;
+    aspect-ratio: 1;
+}
+
+/*Author Introduction style*/
+.Profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.Profile .author-avatar-icon {
+    background-color: #5ab5b2;
+    width: 50%;
+    aspect-ratio: 1;
+    margin: 10px auto;
+    border-radius: 50%;
+}
+
+.Profile .author-name {
+    text-align: center;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+/*ReportAbuse style*/
+.ReportAbuse h3 {
+    text-align: center;
+    margin: 0;
+}
+
+.report_abuse {
+    color: #606060;
+    font-size: 0.8em;
+}
+
+/*PopularPosts widget style*/
+.popular-posts-title {
+    background-color: #303030;
+    margin: 10px 0;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.4em;
+    border-radius: 5px;
+}
