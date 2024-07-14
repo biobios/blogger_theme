@@ -5,7 +5,7 @@ LOCALIZED_DIR := $(CURDIR)/localized
 LOCALIZED_FILES := $(patsubst $(LOCAL_DEF_DIR)/%.properties,$(LOCALIZED_DIR)/%.xml,$(LOCAL_DEF_FILES))
 TEMP_DIR := $(CURDIR)/temp
 SRC_DIR := $(CURDIR)/src
-SRC_FILES := $(wildcard $(SRC_DIR)/*.xml)
+SRC_FILES := $(wildcard $(SRC_DIR)/*)
 SRC_MAIN_FILE := $(SRC_DIR)/main.xml
 
 build: $(LOCALIZED_FILES)
