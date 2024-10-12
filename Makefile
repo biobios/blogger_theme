@@ -19,7 +19,13 @@ $(TEMP_DIR)/merged.xml: $(SRC_FILES)
 	@echo "Merging source files..."
 	@./scripts/merge.sh $(SRC_MAIN_FILE) $(SRC_DIR) > $(TEMP_DIR)/merged.xml
 
-.PHONY: build debug
+i18n_keys: $(TEMP_DIR)/merged.xml
+	@echo "Extracting i18n keys..."
+	@echo "--------------------------------"
+	@./scripts/list_localization_keys.sh $<
+	@echo "--------------------------------"
+
+.PHONY: build debug i18n_keys
 
 debug:
 	@echo "LOCAL_DEF_FILES: $(LOCAL_DEF_FILES)"
