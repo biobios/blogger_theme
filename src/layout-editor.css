@@ -1,0 +1,20 @@
+body#layout .center-columns {
+    display: flex;
+}
+
+body#layout #sidebar-wrapper {
+    width: 100%;
+}
+
+body#layout #main-wrapper {
+    width: 100%;
+}
+
+body#layout #column-sidebar {
+    display: flex;
+    height: 100%;
+}
+
+body#layout #section-sidebar {
+    width: 100%;
+}

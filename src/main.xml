@@ -20,6 +20,11 @@
 				<include file="main.css"/>
 			]]>
 		</b:skin>
+		<b:template-skin>
+			<![CDATA[
+				<include file="layout-editor.css"/>
+			]]>
+		</b:template-skin>
 		<include file="defaultmarkups.xml"/>
 		<b:include data='blog' name='google-analytics'/>
 	</head>
@@ -36,7 +41,7 @@
 			<div class='center-columns hbox'>
 				<div id='sidebar-wrapper'>
 					<aside id='column-sidebar' class='column-sidebar'>
-						<b:section id='i18n.section_id_sidebar'>
+						<b:section id='section-sidebar' name='i18n.section_id_sidebar'>
 							<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
 							</b:widget>
 							<b:widget id='Profile1' locked='false' title='i18n.widget_title_introduction' type='Profile' visible='true'>
