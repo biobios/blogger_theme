@@ -34,7 +34,7 @@
 			<div id='header-wrapper'>
 				<header id='page-header' class='hbox'>
 					<div id='menu-button'></div>
-					<b:section id='i18n.section_id_header'>
+					<b:section id='section-header' name='i18n.section_name_header'>
 						<b:widget id='Header1' locked='true' title='i18n.widget_title_header' type='Header'></b:widget>
 					</b:section>
 				</header>
@@ -42,7 +42,7 @@
 			<div class='center-columns hbox'>
 				<div id='sidebar-wrapper'>
 					<aside id='column-sidebar' class='column-sidebar'>
-						<b:section id='section-sidebar' name='i18n.section_id_sidebar'>
+						<b:section id='section-sidebar' name='i18n.section_name_sidebar'>
 							<b:widget id='BlogSearch1' locked='false' title='' type='BlogSearch'>
 							</b:widget>
 							<b:widget id='Profile1' locked='false' title='i18n.widget_title_introduction' type='Profile' visible='true'>
@@ -59,20 +59,20 @@
 				<div id='main-wrapper'>
 					<div id='column-main' class='vbox'>
 						<main class='main'>
-							<b:section id='i18n.section_id_main' showaddelement='false'>
+							<b:section id='section-main' name='i18n.section_name_main' showaddelement='false'>
 								<b:widget id='Blog1' locked='true' title='i18n.widget_title_blog_posts' type='Blog' visible='true'>
 								</b:widget>
 							</b:section>
 						</main>
 						<div class='borderline'></div>
 						<aside class='under-main'>
-							<b:section id='i18n.section_id_below_main'>
+							<b:section id='section-below-main' name='i18n.section_name_below_main'>
 								<b:widget id='PopularPosts1' locked='false' title='i18n.widget_title_popular_posts' type='PopularPosts' visible='true'>
 								</b:widget>
 							</b:section>
 						</aside>
 						<footer>
-							<b:section id='i18n.section_id_footer'>
+							<b:section id='section-footer' name='i18n.section_name_footer'>
 								<b:widget id='Attribution1' locked='true' title='i18n.widget_title_attribution' type='Attribution'>
 								</b:widget>
 								<b:widget id='ReportAbuse1' locked='true' title='' type='ReportAbuse' visible='true'>

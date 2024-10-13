@@ -280,12 +280,12 @@ body {
     font-weight: bold;
 }
 
-.create-time:after {
-    content: '作成';
+.create-time:before {
+    content: 'i18n.prefix_create_time';
 }
 
-.update-time:after {
-    content: '更新';
+.update-time:before {
+    content: 'i18n.prefix_update_time';
 }
 
 /*Article inner style*/
