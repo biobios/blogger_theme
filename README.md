@@ -41,6 +41,12 @@ comment=コメント
 
 To add new language support, create a new .properties file in the `./localization_def` directory with appropriate translations for the keys.
 
+Run the following command to list all keys used in the code:
+    
+    ```bash
+    make i18n_keys
+    ```
+
 ## Contributing
 - Pull requests (PRs) that propose design changes may not be accepted, as I want to design the theme to be my personal preference.
 - However, PRs for new features, bug fixes, and additional localization are highly encouraged. Feel free to contribute!
