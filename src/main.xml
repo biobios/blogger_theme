@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="https://biobios.github.io/resource/css/my_style_for_blogger.css"/>
 		<b:skin>
 			<![CDATA[
+				<include file="main-css-variables.xml"/>
 				<include file="normalize.css"/>
 				<include file="main.css"/>
 			]]>

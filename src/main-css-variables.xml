@@ -1,0 +1,72 @@
+/*
+<Group description="Page Text">
+    <Variable name="body.text.color" description="Color" type="color" default="#cecece" value="#cecece"/>
+</Group>
+
+<Group description="Backgrounds">
+    <Variable name="body.background.color" description="Body background color" type="color" default="#464646" value="#464646"/>
+    <Variable name="header.background.color" description="Header background color" type="color" default="#1c1c1c" value="#1c1c1c"/>
+    <Variable name="sidebar.background.color" description="Sidebar background color" type="color" default="#414141" value="#414141"/>
+    <Variable name="sidebar.widget.background.color" description="Sidebar widget background color" type="color" default="#2e2e2e" value="#2e2e2e"/>
+</Group>
+
+<Group description="Posts" >
+    <Variable name="post.title.background.color" description="Post title background color" type="color" default="#b0b0b0" value="#b0b0b0"/>
+    <Variable name="post.title.text.color" description="Post title text color" type="color" default="#303030" value="#303030"/>
+    <Variable name="post.snippet.background.color" description="Post snippet background color" type="color" default="#303030" value="#303030"/>
+    <Variable name="post.background.color" description="Post background color" type="color" default="#2e2e2e" value="#2e2e2e"/>
+    <Variable name="comments.background.color" description="Comments background color" type="color" default="#585858" value="#585858"/>
+    <Variable name="comments.post.background.color" description="Comments post background color" type="color" default="#2a2a2a" value="#2a2a2a"/>
+    <Variable name="comment.background.color" description="Comment background color" type="color" default="#727272" value="#727272"/>
+</Group>
+
+<Group description="Post navigation">
+    <Variable name="post.navigation.active.background.color" description="Active post navigation background color" type="color" default="#282828" value="#282828"/>
+    <Variable name="post.navigation.inactive.background.color" description="Inactive post navigation background color" type="color" default="#3a3a3a" value="#3a3a3a"/>
+</Group>
+
+<Group description="Links">
+    <Variable name="body.link.color" description="Link color" type="color" default="#5ab5b2" value="#5ab5b2"/>
+    <Variable name="body.link.visited.color" description="Visited link color" type="color" default="#5ab5b2" value="#5ab5b2"/>
+    <Variable name="body.link.hover.color" description="Hover link color" type="color" default="#5ab5b2" value="#5ab5b2"/>
+</Group>
+
+<Group description="Search">
+    <Variable name="search.text.color" description="Search input color" type="color" default="#ffffff" value="#ffffff"/>
+    <Variable name="search.background.color" description="Search input background color" type="color" default="#2e2e2e" value="#2e2e2e"/>
+    <Variable name="search.hover.background.color" description="Search input hover background color" type="color" default="#202020" value="#202020"/>
+</Group>
+
+<Group description="Labels">
+    <Variable name="label.background.color" description="Label background color" type="color" default="#2e2e2e" value="#2e2e2e"/>
+</Group>
+
+<Group description="Popular posts">
+    <Variable name="popular.posts.title.background.color" description="Popular posts title background color" type="color" default="#303030" value="#303030"/>
+</Group>
+*/
+
+:root {
+    --body-text-color: $(body.text.color);
+    --body-background-color: $(body.background.color);
+    --header-background-color: $(header.background.color);
+    --sidebar-background-color: $(sidebar.background.color);
+    --sidebar-widget-background-color: $(sidebar.widget.background.color);
+    --post-title-background-color: $(post.title.background.color);
+    --post-title-text-color: $(post.title.text.color);
+    --post-snippet-background-color: $(post.snippet.background.color);
+    --post-background-color: $(post.background.color);
+    --comments-background-color: $(comments.background.color);
+    --comments-post-background-color: $(comments.post.background.color);
+    --comment-background-color: $(comment.background.color);
+    --post-navigation-active-background-color: $(post.navigation.active.background.color);
+    --post-navigation-inactive-background-color: $(post.navigation.inactive.background.color);
+    --body-link-color: $(body.link.color);
+    --body-link-visited-color: $(body.link.visited.color);
+    --body-link-hover-color: $(body.link.hover.color);
+    --search-text-color: $(search.text.color);
+    --search-background-color: $(search.background.color);
+    --search-hover-background-color: $(search.hover.background.color);
+    --label-background-color: $(label.background.color);
+    --popular-posts-title-background-color: $(popular.posts.title.background.color);
+}
